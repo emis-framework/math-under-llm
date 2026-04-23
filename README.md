@@ -3,9 +3,9 @@
 > **"Die Mathematischen Grundlagen der Künstlichen Intelligenz"**
 > (大模型的数学基础 —— 致敬 John von Neumann)
 
-[![License](https://shields.io)](https://opensource.org)
-[![DOI](https://shields.io)](https://zenodo.org)
-[![Theoretical_Foundation](https://shields.io)](https://github.com)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXX-blue.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![Theoretical_Foundation](https://img.shields.io/badge/Theoretical_Foundation-EMIS--LLM-green.svg)](https://github.com/emis-framework/math-under-llm)
 
 # math-under-llm
 
