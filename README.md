@@ -1,3 +1,11 @@
+# The Mathematical Foundations of Large Language Models (MF-LLM)
+
+[![License](https://shields.io)](https://opensource.org)
+[![DOI](https://shields.io)](https://zenodo.org)
+[![Theoretical_Foundation](https://shields.io)](https://github.com)
+
+> **"Mathematics is not just a tool, but the ultimate reality of computation."**
+
 # math-under-llm
 
 > **"We are not here to talk to the ghost in the machine. We are here to measure the machinery itself."**
