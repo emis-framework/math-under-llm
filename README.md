@@ -1,14 +1,16 @@
-# The Mathematical Foundations of Large Language Models (MF-LLM)
+# Mathematical Foundations of Large Language Models (MF-LLM)
+
+> **"Die Mathematischen Grundlagen der Künstlichen Intelligenz"**
+> (大模型的数学基础 —— 致敬 John von Neumann)
 
 [![License](https://shields.io)](https://opensource.org)
 [![DOI](https://shields.io)](https://zenodo.org)
 [![Theoretical_Foundation](https://shields.io)](https://github.com)
 
-> **"Mathematics is not just a tool, but the ultimate reality of computation."**
-
 # math-under-llm
 
-> **"We are not here to talk to the ghost in the machine. We are here to measure the machinery itself."**
+> **"We are not here to talk to the ghost in the machine. We are here to dig out the ghost itself."**
+> （我们来这里不是为了和机器里的幽灵聊天，我们是来挖出这个深藏的幽灵。）
 
 ## 0. The Manifesto: If Von Neumann Reconstructed the LLM
 我们拒绝将大语言模型（LLM）视为不可解释的“炼丹术”黑盒。如果冯·诺依曼（John von Neumann）审视今天的 LLM，他会剥离所有感性的词汇，将智能归纳为以下三个硬核的数学维度。本仓库旨在通过物理实证，揭示压在 LLM 底下的冰冷数学。
@@ -28,6 +30,20 @@ Transformer 的深层堆叠并非简单的特征提取，而是**算子半群的
 LLM 的文本生成并非“蹦字”，而是在概率测度空间中进行的**马尔可夫链采样（MCMC Sampling）**。
 * 通过**遍历理论（Ergodic Theory）**，我们可以给出一个严谨的数学判据。
 * **涌现（Emergence）**：本质上是参数规模达到临界点后，系统发生的统计学**相变（Phase Transition）**，即从局部随机性跃迁到了全局逻辑相干性。
+
+---
+
+## 看不懂，那就对了，如果是费曼，他会这么说：
+
+### 把“希尔伯特空间中的算子对偶”改成：
+“Q 矩阵和 K 矩阵就像一把钥匙和一把锁，虽然它们长得不一样，但它们的齿痕分布（谱）必须百分之百对齐，否则这台机器一分钟也转不下去。”
+
+### 把“谱相关性”改成：
+“不管你是 Meta 做的，阿里做的，还是 Google 做的，只要这模型能干活，我们测出来的相关系数就是 1.000000。这是一个雷打不动的常数。”
+
+### 把“EMIS 跨界映射”改成：
+“既然硅片上的机器得守这个规矩，那么人造的社会组织——那些决策（Q）和资源（K）的对接，是不是也得守同样的数学规矩？我们准备去抓那里的常数。”
+
 
 ---
 
