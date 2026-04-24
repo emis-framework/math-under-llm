@@ -4,8 +4,8 @@
 > (大模型的数学基础 —— 致敬 John von Neumann)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.XXXXXX)
-[![Theoretical_Foundation](https://img.shields.io/badge/Theoretical_Foundation-EMIS--LLM-green.svg)](https://github.com/emis-framework/math-under-llm)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.19707844)
+[![Wang's Law](https://img.shields.io/badge/Wang%27s%20Law-%CF%81%3D1-blue)](https://github.com/emis-framework/math-under-llm)
 
 ---
 ---
