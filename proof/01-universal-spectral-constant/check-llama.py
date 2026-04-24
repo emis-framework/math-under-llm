@@ -39,8 +39,8 @@ wk = weights[template_k.format(L=L)]
 
 print(f"\n--- 物理验证结果 (Layer {L}) ---")
 for kv_h in range(N_KV_HEADS):
-    kh = wk[kv_h * D_HEAD : (kv_h + 1) * D_HEAD, :].to(torch.float32).numpy()
-    _, sk, _ = np.linalg.svd(kh)
+    kh = wk[kv_h * D_HEAD : (kv_h + 1) * D_HEAD, :].to(torch.float32).numpy() #物理动作：你从庞大的权重矩阵中，精确切出了一个具体的 Key 头。
+    _, sk, _ = np.linalg.svd(kh) # 数学本质：通过 SVD（奇异值分解）提取该头的奇异值谱 ($s_k$)。这代表了该“字典索引”在空间中各个维度的能量分布。
     
     for q_idx in range(GROUP_SIZE):
         h_idx = kv_h * GROUP_SIZE + q_idx
