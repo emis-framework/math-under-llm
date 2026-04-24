@@ -1,12 +1,20 @@
 cff-version: 1.2.0
-message: "If you use this theory or code, please cite it as below."
+message: "If you use Wang's Law or this code, please cite it as below."
 authors:
   - family-names: "WANG"
     given-names: "FEI-YUN"
-    orcid: "https://orcid.org/0009-0005-7549-2251" # 如果有 ORCID 就填，没有就删这行
-title: "The Mathematical Foundations of Large Language Models (MF-LLM)"
-version: 0.1.0
-doi: "" # 拿到 DOI 后回来填
-date-released: 2026-04-23
-url: "https://github.com"
+    orcid: "https://orcid.org/0009-0005-7549-2251"
+title: "Wang's Law of Spectral Symmetry: The Mathematical Foundations of LLM Logic"
+version: 0.2.0
+doi: "10.5281/zenodo.19707844" # 指向最新的release
+date-released: 2026-04-24
+url: "https://github.com/emis-framework/math-under-llm"
 license: Apache-2.0
+repository-code: "https://github.com/emis-framework/math-under-llm"
+keywords:
+  - "Wang's Law"
+  - "ρ=1"
+  - "Spectral Symmetry"
+  - "Large Language Models"
+  - "Mathematical Logic"
+  - "Symmetry Principle"
