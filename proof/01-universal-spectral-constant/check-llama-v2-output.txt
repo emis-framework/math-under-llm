@@ -1,0 +1,290 @@
+Python 3.12.0 (tags/v3.12.0:0fb18b0, Oct  2 2023, 13:03:39) [MSC v.1935 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+
+= RESTART: D:\2604-math-under-llm\check-llama-v2.py
+使用设备: cuda
+识别到的键名模板:
+  Q: model.layers.{L}.self_attn.q_proj.weight
+  K: model.layers.{L}.self_attn.k_proj.weight
+
+开始分析 8 层，每层 8 个 KV 头 × 4 个 Q 头
+
+========== Layer 0 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9431, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9872, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9622, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9753, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9832, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9749, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9889, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9883, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9726, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9869, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9740, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9792, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9572, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9797, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9900, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9723, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9899, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9618, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9762, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9750, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9961, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9846, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9913, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9959, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9884, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9786, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9834, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9759, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9881, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9924, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9789, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9098, Spearman = +1.0000
+
+========== Layer 1 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9943, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9974, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9032, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9910, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9970, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9945, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9935, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.8881, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9912, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9515, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9917, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9925, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9749, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9972, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9763, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9985, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9939, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9924, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9964, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9658, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9515, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9372, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9657, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9835, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9943, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9835, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9981, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9931, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9942, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9795, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9959, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9843, Spearman = +1.0000
+
+========== Layer 2 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9771, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9883, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9973, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9620, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9470, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9935, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9875, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9381, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9978, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9862, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9468, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9694, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9909, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9950, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9751, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9776, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9848, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9972, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9896, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9029, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9754, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9865, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9913, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9629, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9887, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9834, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9974, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9907, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9864, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9930, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9770, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9308, Spearman = +1.0000
+
+========== Layer 3 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9844, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9536, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9816, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9891, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9978, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9375, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9615, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9932, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9472, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9866, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9812, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9819, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9974, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9143, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9836, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9578, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9757, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9665, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9809, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9709, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9747, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9835, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9918, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9727, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9570, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9772, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9839, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9951, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9857, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9904, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9850, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9636, Spearman = +1.0000
+
+========== Layer 4 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9951, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9699, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9852, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9878, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9846, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9886, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9928, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9736, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9666, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9750, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9951, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9475, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9125, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.8800, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9397, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9748, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9729, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.8784, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9219, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9775, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9621, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9735, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9505, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9792, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9829, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9807, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9962, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9659, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9680, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9781, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9881, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9785, Spearman = +1.0000
+
+========== Layer 5 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9736, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9647, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9070, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9555, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9711, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9830, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9932, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9772, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9956, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9971, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9967, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9685, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9830, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9578, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9736, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9721, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9337, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9980, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9757, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9634, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9635, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9837, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9867, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9741, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9830, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9877, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.8706, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9613, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9620, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9618, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9801, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9466, Spearman = +1.0000
+
+========== Layer 6 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9724, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9495, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9521, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9963, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9761, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.9866, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9892, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9568, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9147, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9629, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.8669, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9630, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9032, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9748, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9653, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9775, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9728, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9692, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9967, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9647, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9849, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9906, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9983, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9451, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9883, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9323, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9934, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9774, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9739, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9920, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9418, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9737, Spearman = +1.0000
+
+========== Layer 7 ==========
+  wq shape: torch.Size([4096, 4096]), wk shape: torch.Size([1024, 4096])
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9777, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9182, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9126, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9197, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  4: Pearson = +0.9564, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  5: Pearson = +0.8206, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引  6: Pearson = +0.9891, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引  7: Pearson = +0.9870, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9457, Spearman = +1.0000
+  KV头 2 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9895, Spearman = +1.0000
+  KV头 2 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9893, Spearman = +1.0000
+  KV头 2 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9128, Spearman = +1.0000
+  KV头 3 (组内Q偏移 0) | Q头索引 12: Pearson = +0.9801, Spearman = +1.0000
+  KV头 3 (组内Q偏移 1) | Q头索引 13: Pearson = +0.9899, Spearman = +1.0000
+  KV头 3 (组内Q偏移 2) | Q头索引 14: Pearson = +0.9861, Spearman = +1.0000
+  KV头 3 (组内Q偏移 3) | Q头索引 15: Pearson = +0.9950, Spearman = +1.0000
+  KV头 4 (组内Q偏移 0) | Q头索引 16: Pearson = +0.9630, Spearman = +1.0000
+  KV头 4 (组内Q偏移 1) | Q头索引 17: Pearson = +0.9357, Spearman = +1.0000
+  KV头 4 (组内Q偏移 2) | Q头索引 18: Pearson = +0.9907, Spearman = +1.0000
+  KV头 4 (组内Q偏移 3) | Q头索引 19: Pearson = +0.9390, Spearman = +1.0000
+  KV头 5 (组内Q偏移 0) | Q头索引 20: Pearson = +0.9057, Spearman = +1.0000
+  KV头 5 (组内Q偏移 1) | Q头索引 21: Pearson = +0.9467, Spearman = +1.0000
+  KV头 5 (组内Q偏移 2) | Q头索引 22: Pearson = +0.9917, Spearman = +1.0000
+  KV头 5 (组内Q偏移 3) | Q头索引 23: Pearson = +0.9927, Spearman = +1.0000
+  KV头 6 (组内Q偏移 0) | Q头索引 24: Pearson = +0.9848, Spearman = +1.0000
+  KV头 6 (组内Q偏移 1) | Q头索引 25: Pearson = +0.9344, Spearman = +1.0000
+  KV头 6 (组内Q偏移 2) | Q头索引 26: Pearson = +0.9766, Spearman = +1.0000
+  KV头 6 (组内Q偏移 3) | Q头索引 27: Pearson = +0.9415, Spearman = +1.0000
+  KV头 7 (组内Q偏移 0) | Q头索引 28: Pearson = +0.9529, Spearman = +1.0000
+  KV头 7 (组内Q偏移 1) | Q头索引 29: Pearson = +0.9725, Spearman = +1.0000
+  KV头 7 (组内Q偏移 2) | Q头索引 30: Pearson = +0.9780, Spearman = +1.0000
+  KV头 7 (组内Q偏移 3) | Q头索引 31: Pearson = +0.9835, Spearman = +1.0000

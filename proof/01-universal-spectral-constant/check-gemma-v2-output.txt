@@ -1,0 +1,485 @@
+Python 3.12.0 (tags/v3.12.0:0fb18b0, Oct  2 2023, 13:03:39) [MSC v.1935 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+= RESTART: D:/2604-math-under-llm/check-gemma-v2.py
+使用设备: cuda
+正在加载模型权重: gemma-4-E2B-model.safetensors ...
+探测到总层数: 0 - 34，共 35 层
+层列表: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+
+========== Layer 0 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.0.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.0.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9921, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9937, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9967, Spearman = +1.0000
+
+========== Layer 1 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.1.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.1.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9949, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9986, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9988, Spearman = +1.0000
+
+========== Layer 2 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.2.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.2.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9982, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9918, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9957, Spearman = +1.0000
+
+========== Layer 3 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.3.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.3.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9952, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9956, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9966, Spearman = +1.0000
+
+========== Layer 4 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.4.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.4.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9960, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9936, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9961, Spearman = +1.0000
+
+========== Layer 5 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.5.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.5.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9987, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9993, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9900, Spearman = +1.0000
+
+========== Layer 6 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.6.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.6.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9918, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9937, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9981, Spearman = +1.0000
+
+========== Layer 7 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.7.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.7.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9884, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9962, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9941, Spearman = +1.0000
+
+========== Layer 8 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.8.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.8.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9935, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9913, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9954, Spearman = +1.0000
+
+========== Layer 9 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.9.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.9.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9913, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9972, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9981, Spearman = +1.0000
+
+========== Layer 10 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.10.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.10.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9965, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9964, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9856, Spearman = +1.0000
+
+========== Layer 11 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.11.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.11.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9981, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9886, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9945, Spearman = +1.0000
+
+========== Layer 12 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.12.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.12.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9902, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9855, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9934, Spearman = +1.0000
+
+========== Layer 13 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.13.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.13.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9882, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9921, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9948, Spearman = +1.0000
+
+========== Layer 14 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.14.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.14.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9882, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9871, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9950, Spearman = +1.0000
+
+========== Layer 15 ==========
+  wq shape: torch.Size([768, 768]), wk shape: torch.Size([768, 768])
+  键名: Q=model.vision_tower.encoder.layers.15.self_attn.q_proj.linear.weight
+        K=model.vision_tower.encoder.layers.15.self_attn.k_proj.linear.weight
+  推断 head_dim = 256
+  Q头数=3, KV头数=3, 组大小=1
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9939, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  1: Pearson = +0.9905, Spearman = +1.0000
+  KV头 2 (组内Q偏移 0) | Q头索引  2: Pearson = +0.9861, Spearman = +1.0000
+
+========== Layer 16 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.16.self_attn.q_proj.weight
+        K=model.language_model.layers.16.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8541, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9362, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8887, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9118, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.8761, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9136, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8881, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8957, Spearman = +1.0000
+
+========== Layer 17 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.17.self_attn.q_proj.weight
+        K=model.language_model.layers.17.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8711, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8136, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8458, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8742, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9007, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9069, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9164, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9071, Spearman = +1.0000
+
+========== Layer 18 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.18.self_attn.q_proj.weight
+        K=model.language_model.layers.18.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9115, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9447, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9272, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9014, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9066, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9307, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8187, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8401, Spearman = +1.0000
+
+========== Layer 19 ==========
+  wq shape: torch.Size([4096, 1536]), wk shape: torch.Size([512, 1536])
+  键名: Q=model.language_model.layers.19.self_attn.q_proj.weight
+        K=model.language_model.layers.19.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=16, KV头数=2, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9844, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9840, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9828, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9806, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.7431, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.7637, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9325, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9194, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9773, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9785, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引 10: Pearson = +0.7884, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引 11: Pearson = +0.7912, Spearman = +1.0000
+  KV头 1 (组内Q偏移 4) | Q头索引 12: Pearson = +0.9663, Spearman = +1.0000
+  KV头 1 (组内Q偏移 5) | Q头索引 13: Pearson = +0.9637, Spearman = +1.0000
+  KV头 1 (组内Q偏移 6) | Q头索引 14: Pearson = +0.9414, Spearman = +1.0000
+  KV头 1 (组内Q偏移 7) | Q头索引 15: Pearson = +0.9646, Spearman = +1.0000
+
+========== Layer 20 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.20.self_attn.q_proj.weight
+        K=model.language_model.layers.20.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.7842, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8170, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9026, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8924, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9268, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8212, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9179, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9003, Spearman = +1.0000
+
+========== Layer 21 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.21.self_attn.q_proj.weight
+        K=model.language_model.layers.21.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8583, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8700, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9269, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.7734, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.8231, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9484, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9321, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9473, Spearman = +1.0000
+
+========== Layer 22 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.22.self_attn.q_proj.weight
+        K=model.language_model.layers.22.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9154, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8877, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8692, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8933, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.8471, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8899, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9072, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8809, Spearman = +1.0000
+
+========== Layer 23 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.23.self_attn.q_proj.weight
+        K=model.language_model.layers.23.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8920, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8982, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9456, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8489, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9177, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8575, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8747, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8405, Spearman = +1.0000
+
+========== Layer 24 ==========
+  wq shape: torch.Size([4096, 1536]), wk shape: torch.Size([512, 1536])
+  键名: Q=model.language_model.layers.24.self_attn.q_proj.weight
+        K=model.language_model.layers.24.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=16, KV头数=2, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9765, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9769, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9876, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9877, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9150, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9153, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9777, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9802, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9241, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9194, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引 10: Pearson = +0.7997, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引 11: Pearson = +0.7816, Spearman = +1.0000
+  KV头 1 (组内Q偏移 4) | Q头索引 12: Pearson = +0.9008, Spearman = +1.0000
+  KV头 1 (组内Q偏移 5) | Q头索引 13: Pearson = +0.8901, Spearman = +1.0000
+  KV头 1 (组内Q偏移 6) | Q头索引 14: Pearson = +0.9811, Spearman = +1.0000
+  KV头 1 (组内Q偏移 7) | Q头索引 15: Pearson = +0.9788, Spearman = +1.0000
+
+========== Layer 25 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.25.self_attn.q_proj.weight
+        K=model.language_model.layers.25.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8414, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9630, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9096, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9325, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9184, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8566, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8977, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9047, Spearman = +1.0000
+
+========== Layer 26 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.26.self_attn.q_proj.weight
+        K=model.language_model.layers.26.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9002, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9072, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8972, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8228, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.8842, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8847, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8882, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8534, Spearman = +1.0000
+
+========== Layer 27 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.27.self_attn.q_proj.weight
+        K=model.language_model.layers.27.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8896, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8694, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8018, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8835, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9002, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8926, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9022, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9120, Spearman = +1.0000
+
+========== Layer 28 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.28.self_attn.q_proj.weight
+        K=model.language_model.layers.28.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9183, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8533, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9111, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8101, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.8811, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9086, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8584, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8820, Spearman = +1.0000
+
+========== Layer 29 ==========
+  wq shape: torch.Size([4096, 1536]), wk shape: torch.Size([512, 1536])
+  键名: Q=model.language_model.layers.29.self_attn.q_proj.weight
+        K=model.language_model.layers.29.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=16, KV头数=2, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9398, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9504, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9609, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9594, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9508, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9560, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9606, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9634, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9416, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9424, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9735, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9726, Spearman = +1.0000
+  KV头 1 (组内Q偏移 4) | Q头索引 12: Pearson = +0.9060, Spearman = +1.0000
+  KV头 1 (组内Q偏移 5) | Q头索引 13: Pearson = +0.9144, Spearman = +1.0000
+  KV头 1 (组内Q偏移 6) | Q头索引 14: Pearson = +0.9649, Spearman = +1.0000
+  KV头 1 (组内Q偏移 7) | Q头索引 15: Pearson = +0.9622, Spearman = +1.0000
+
+========== Layer 30 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.30.self_attn.q_proj.weight
+        K=model.language_model.layers.30.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9050, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9130, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.8984, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.7753, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9108, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.8896, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8918, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.8916, Spearman = +1.0000
+
+========== Layer 31 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.31.self_attn.q_proj.weight
+        K=model.language_model.layers.31.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.8489, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.8970, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9075, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.8647, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9077, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9167, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8770, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9054, Spearman = +1.0000
+
+========== Layer 32 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.32.self_attn.q_proj.weight
+        K=model.language_model.layers.32.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9095, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9006, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9244, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9047, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9068, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9097, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.8999, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9140, Spearman = +1.0000
+
+========== Layer 33 ==========
+  wq shape: torch.Size([2048, 1536]), wk shape: torch.Size([256, 1536])
+  键名: Q=model.language_model.layers.33.self_attn.q_proj.weight
+        K=model.language_model.layers.33.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=8, KV头数=1, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9023, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.7450, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9076, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9029, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9141, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9081, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9395, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9105, Spearman = +1.0000
+
+========== Layer 34 ==========
+  wq shape: torch.Size([4096, 1536]), wk shape: torch.Size([512, 1536])
+  键名: Q=model.language_model.layers.34.self_attn.q_proj.weight
+        K=model.language_model.layers.34.self_attn.k_proj.weight
+  推断 head_dim = 256
+  Q头数=16, KV头数=2, 组大小=8
+  KV头 0 (组内Q偏移 0) | Q头索引  0: Pearson = +0.9582, Spearman = +1.0000
+  KV头 0 (组内Q偏移 1) | Q头索引  1: Pearson = +0.9621, Spearman = +1.0000
+  KV头 0 (组内Q偏移 2) | Q头索引  2: Pearson = +0.9561, Spearman = +1.0000
+  KV头 0 (组内Q偏移 3) | Q头索引  3: Pearson = +0.9533, Spearman = +1.0000
+  KV头 0 (组内Q偏移 4) | Q头索引  4: Pearson = +0.9554, Spearman = +1.0000
+  KV头 0 (组内Q偏移 5) | Q头索引  5: Pearson = +0.9581, Spearman = +1.0000
+  KV头 0 (组内Q偏移 6) | Q头索引  6: Pearson = +0.9469, Spearman = +1.0000
+  KV头 0 (组内Q偏移 7) | Q头索引  7: Pearson = +0.9534, Spearman = +1.0000
+  KV头 1 (组内Q偏移 0) | Q头索引  8: Pearson = +0.9556, Spearman = +1.0000
+  KV头 1 (组内Q偏移 1) | Q头索引  9: Pearson = +0.9600, Spearman = +1.0000
+  KV头 1 (组内Q偏移 2) | Q头索引 10: Pearson = +0.9481, Spearman = +1.0000
+  KV头 1 (组内Q偏移 3) | Q头索引 11: Pearson = +0.9542, Spearman = +1.0000
+  KV头 1 (组内Q偏移 4) | Q头索引 12: Pearson = +0.9546, Spearman = +1.0000
+  KV头 1 (组内Q偏移 5) | Q头索引 13: Pearson = +0.9589, Spearman = +1.0000
+  KV头 1 (组内Q偏移 6) | Q头索引 14: Pearson = +0.9615, Spearman = +1.0000
+  KV头 1 (组内Q偏移 7) | Q头索引 15: Pearson = +0.9667, Spearman = +1.0000
