@@ -4,7 +4,7 @@ import numpy as np
 from scipy.stats import spearmanr
 
 # 1. 加载文件
-FILE_PATH = "model-00001-of-00004.safetensors"
+FILE_PATH = "llama-3-model-00001-of-00004.safetensors"
 weights = load_file(FILE_PATH)
 
 # --- 自动识别 Key 名 ---
