@@ -4,7 +4,7 @@
 
 ## 📌 实验背景
 
-在 GQA（Grouped Query Attention）架构中，多个 Query 头共享同一个 Key 头。理论预期：一个具备强逻辑推理能力的模型，其 Q 投影与 K 投影的奇异值谱形状应高度对齐（即谱半径 ρ≈1 且奇异值序列成比例）。本实验对比：
+在 GQA（Grouped Query Attention）架构中，多个 Query 头共享同一个 Key 头。理论预期：一个具备强逻辑推理能力的模型，其 Q 投影与 K 投影的奇异值谱形状应高度对齐（即谱半径 r≈1 且奇异值序列成比例）。本实验对比：
 
 - **原生模型**：Qwen2.5-14B-Instruct（纯 SFT）
 - **RL 增强模型**：DeepSeek-R1-Distill-Qwen-14B（蒸馏自 R1 的推理能力）
@@ -122,7 +122,7 @@ GQA_RATIO = 5         # 每组 GQA 的 Q 头数
 
 欢迎提交 Issue 或 Pull Request 改进算法或适配更多模型。
 
-> issue 1: verify ρ=1
+> issue 1: verify r=1
 > issue 2: verify ssr
 
 ---
