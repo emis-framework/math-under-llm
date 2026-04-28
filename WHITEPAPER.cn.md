@@ -47,9 +47,9 @@ Query 投影 \(W_Q \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}\)，K
 
 ### 2.2 奇异值分解
 对每个头矩阵 \(M \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}\) 执行 SVD：
-\[
+$$
 M = U \Sigma V^T
-\]
+$$
 其中 \(\Sigma = \mathrm{diag}(s_1, s_2, ..., s_{d_{\text{head}}})\)，奇异值满足 \(s_1 \ge s_2 \ge ... \ge s_{d_{\text{head}}}\)。
 
 
@@ -57,9 +57,9 @@ M = U \Sigma V^T
 
 **谱线性对齐（王氏常数）**  
 在具备强推理能力的注意力层中，Query 与 Key 投影矩阵的奇异值序列呈**强线性正相关**。定义 Pearson 相关系数：
-> \[
+> $$
 > r(s_q, s_k) = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,i} - \bar{s}_q)^2 \sum_i (s_{k,i} - \bar{s}_k)^2}}
-> \]
+> $$
 
 理想情况下，完全线性相关时 \(r = 1\)。实验观测表明，主流模型（LLaMA-3, Qwen-2.5, Gemma-4）的 \(r\) 稳定在 **0.94～0.99**，显著高于随机基线。我们将这一普适高相关值下的常数（或下界）称为 **王氏常数**。
 
@@ -75,21 +75,21 @@ M = U \Sigma V^T
 ### 2.4 第二定律
 **谱形状残差 SSR（）**
 对于第 \(i\) 个头，计算归一化奇异值向量：
-\[
+$$
 \tilde{s}_q^{(i)} = \frac{s_q^{(i)}}{\|s_q^{(i)}\|_2}, \quad
 \tilde{s}_k^{(i)} = \frac{s_k^{(i)}}{\|s_k^{(i)}\|_2}
-\]
+$$
 该组内所有 Q 头相对于共享 K 头的 SSR 为：
-\[
+$$
 \mathrm{SSR}_{group} = \frac{1}{g} \sum_{j=1}^{g} \frac{1}{d_{\text{head}}} \sum_{t=1}^{d_{\text{head}}} \left|\tilde{s}_{q}^{(j,t)} - \tilde{s}_{k}^{(t)}\right|
-\]
+$$
 整个层的 SSR 取所有组的平均值。
 
 ### 2.5 左奇异向量不需要对齐
 计算 \(U_Q\) 与 \(U_K\) 的列平均余弦相似度：
-\[
+$$
 \cos(U_Q, U_K) = \frac{1}{d_{\text{head}}} \sum_{i=1}^{d_{\text{head}}} \left|(U_Q)_{:,i}^T (U_K)_{:,i}\right|
-\]
+$$
 实验发现该值始终接近随机值（0.1 左右），表明左奇异向量的方向**不需要**对齐，这并非逻辑相干性的必要条件。
 
 ---
@@ -138,9 +138,9 @@ Gemma‑4‑E2B 的 r 值偏低，根源在于其轻量架构（35 层、23 亿�
 
 SSR 度量归一化后的 Q 奇异值序列与 K 奇异值序列的 L1 偏差：
 
-\[
+$$
 \text{SSR} = \frac{1}{d_{\text{head}}} \sum_{i=1}^{d_{\text{head}}} \left| \tilde{s}_q^{(i)} - \tilde{s}_k^{(i)} \right|
-\]
+$$
 
 其中 \(\tilde{s} = s / \|s\|_2\)。若 Q 和 K 的奇异值不仅线性相关，而且归一化后逐点重合，则 SSR = 0。SSR 越大，谱形状差异越大，信息在该层投影过程中的失真越严重。
 
@@ -202,9 +202,9 @@ SSR 度量归一化后的 Q 奇异值序列与 K 奇异值序列的 L1 偏差：
 
 设 Transformer 模型具有 GQA 架构，每头维度为 \(d_{\text{head}}\)，且满足谱线性对齐性 (王氏第一定律)。记深层 Q/K 谱形状残差的平均值为 \(\delta = \overline{\text{SSR}}\)，每层信号幅度的平均放大因子为 \(\kappa\) (以`cond(Q)`为代理)。定义逻辑保真度失效点为：单头等价信噪比降至 \(1\) (\(0\text{dB}\))。则使用尾数位数为 \(m\)、最大有限值为 MaxFinite 的数值格式 \(B\) 时，模型的最大可训练深度为：
 
-\[
+$$
 \boxed{L_{\max}(B) = \min\Bigl(\; \frac{1}{\delta},\quad 3\cdot 2^{2m},\quad \frac{\log_{2}(\text{MaxFinite})}{\log_{2}\kappa}\;\Bigr)}
-\]
+$$
 
 三项约束依次为信息衰减极限 (\(L_{\text{info}}\))、量化噪声极限 (\(L_{\text{quant}}\)) 和动态范围极限 (\(L_{\text{dyn}}\))。其中，\(L_{\text{info}}\) 源于香农信道容量，\(L_{\text{quant}}\) 由 \(m\) 位均匀量化信噪比公式导出，\(L_{\text{dyn}}\) 要求信号总放大不超过格式可表示范围。
 
@@ -221,12 +221,12 @@ SSR 度量归一化后的 Q 奇异值序列与 K 奇异值序列的 L1 偏差：
 | BF16 | 7          | \(3\cdot 2^{14}\approx 4.9\times 10^{4}\)  | \(3.39\times 10^{38}\) | \(\log_{2}(3.39\times 10^{38}) / 1 \approx 128\) |
 
 代入定理公式：
-\[
+$$
 L_{\max}(\text{FP16}) = \min\bigl(L_{\text{info}},\; 3.15\times 10^{6},\; \mathbf{16}\bigr) \le \mathbf{16}
-\]
-\[
+$$
+$$
 L_{\max}(\text{BF16}) = \min\bigl(L_{\text{info}},\; 4.9\times 10^{4},\; \mathbf{128}\bigr) \le \mathbf{128}
-\]
+$$
 
 FP16 的极限瓶颈 \(L_{\text{dyn}}=16\) 远小于当前大模型的典型深度 40‑80 层。尽管其尾数精度极高，但每过 16 层，信号放大 \(2^{16}=65536\) 倍即触及 MaxFinite，发生上溢。BF16 的 128 层动态范围足以覆盖当前绝大多数模型。
 
@@ -238,19 +238,19 @@ FP16 的极限瓶颈 \(L_{\text{dyn}}=16\) 远小于当前大模型的典型深�
 **问题**：传闻 GPT‑5 约 196 层，纯 BF16 能否直接训练？
 
 **第一步：计算理论要求**。由定理：
-\[
+$$
 L_{\max} \approx 196 \;\Rightarrow\; \delta = \overline{\text{SSR}} \le \frac{1}{L_{\max}} \approx 0.0051
-\]
+$$
 当前 R1 深层 \(\overline{\text{SSR}}\approx 0.006\)，需再将谱形状残差压低约 15%。同时，平均放大因子 \(\kappa\) 必须足够小，使得动态范围能够支撑。
 
 **第二步：BF16 动态范围充要条件**：
-\[
+$$
 L_{\text{dyn}} = \frac{\log_{2}(3.39\times 10^{38})}{\log_{2}\kappa} \ge 196 \;\Longrightarrow\; \log_{2}\kappa \le \frac{128}{196} \approx 0.653
-\]
+$$
 即要求：
-\[
+$$
 \kappa \le 2^{0.653} \approx 1.57
-\]
+$$
 这意味着除首层外的所有深层，`cond(Q)` 必须控制在约 **1.6 以下**。R1 深层实测 `cond(Q)` 落在 2‑4 区间，因此纯 BF16 **无法直接满足**。
 
 **第三步：可行方案——混合精度**。已知 R1 的 Layer 1 存在条件数爆炸 (\( \kappa_1 \approx 1000\))，单层消耗约 10 位指数。采用 **Layer 1 用 FP32**，其余 195 层用 BF16 的混合策略：
@@ -259,9 +259,9 @@ L_{\text{dyn}} = \frac{\log_{2}(3.39\times 10^{38})}{\log_{2}\kappa} \ge 196 \;\
 - 即深层 `cond(Q)` 必须进一步压至 **1.5 以下**（或通过牛顿‑舒尔茨正交化实现）。
 
 **第四步：带宽与容量**。SSR = 0.005 时，单头单层容量：
-\[
+$$
 C = 128\cdot\log_2(1+1/0.005) \approx 128\times 7.65 \approx 979\ \text{bits}
-\]
+$$
 196 层累积约 \(1.9\times 10^{5}\) 比特，远大于词表区分所需的 ~15 比特。**带宽非瓶颈**。
 
 **最终预判**：
@@ -284,10 +284,10 @@ C = 128\cdot\log_2(1+1/0.005) \approx 128\times 7.65 \approx 979\ \text{bits}
 
 假设系统的动力学由以下作用量控制：
 
-\[
+$$
 \mathcal{W} = \sum_{l=1}^{L} \Bigl[ -I(X_{l-1}; X_l) + \beta \cdot \text{SSR}_l^2 + \gamma \cdot (\log \kappa_l)^2 \Bigr]
 \tag{6.1}
-\]
+$$
 
 其中：
 
@@ -340,19 +340,19 @@ C = 128\cdot\log_2(1+1/0.005) \approx 128\times 7.65 \approx 979\ \text{bits}
 
 **Query (Q)——Riesz 表示与内积注意力**。Query 投影 \(W_Q\) 可视为定义在 \(\mathcal{H}_K\) 上的**有界线性泛函**。根据 Riesz 表示定理,在完备内积空间中,存在唯一的向量 \(\mathbf{q}_i\) 使得对任意 \(\mathbf{k}_j \in \mathcal{H}_K\),有：
 
-\[
+$$
 \text{score}(\mathbf{q}_i, \mathbf{k}_j) = \langle \mathbf{q}_i, \mathbf{k}_j \rangle_{\mathcal{H}_K}
 \tag{6.2}
-\]
+$$
 
 这正是 scaled dot-product attention 在算子理论中的本质形式——注意力分数不是任意函数,而是内积,其合理性由 Riesz 定理保证。
 
 **伴随性与王氏第一定律的算子解释**。定义密度算子 \(\rho_K = W_K W_K^T\) 和 \(\rho_Q = W_Q W_Q^T\)。这两个对称正定算子刻画了 K 和 Q 在各自空间中的“能量分布”。若系统处于稳态（训练收敛）,我们观测到的 \(\text{Pearson}(s_q, s_k) \approx 1\) 等价于：
 
-\[
+$$
 \|\rho_Q - \alpha \rho_K\|_1 \to 0
 \tag{6.3}
-\]
+$$
 
 即 Q 和 K 的能量分布具有统计相似性,差异仅为全局尺度因子 \(\alpha\)。这是平衡态的特征——Q 和 K 并非彼此独立,而是在高维语义空间中协同演化至一对“共轭分布”。
 
@@ -360,17 +360,17 @@ C = 128\cdot\log_2(1+1/0.005) \approx 128\times 7.65 \approx 979\ \text{bits}
 
 **深层堆叠——算子半群演化**。若将第 \(l\) 层的完整自注意力+MLP 变换记为 \(T_l\),则从输入到输出的映射为：
 
-\[
+$$
 X_{\text{out}} = T_L \circ T_{L-1} \circ \cdots \circ T_1 (X_{\text{in}})
 \tag{6.4}
-\]
+$$
 
 这构成一个**离散算子半群** \(\{T_l\}_{l=1}^L\)。残差连接确保了恒等算子 \(I\) 始终作为微扰存在：
 
-\[
+$$
 T_l = I + \epsilon \cdot F_l
 \tag{6.5}
-\]
+$$
 
 若每层 \(\|T_l\| \le 1\)（收缩算子）,则深层演化是稳定的,信号能量不爆炸。但若某层 \(\|T_l\| > 1\),则需通过残差连接中的恒等算子和归一化层共同约束——这正是我们在 Layer 1 观测到的“条件数爆炸”的算子解释：这是边界层效应,而非缺陷。
 
