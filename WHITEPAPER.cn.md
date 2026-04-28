@@ -73,23 +73,32 @@ $$
 ---
 
 ### 2.4 第二定律
-**谱形状残差 SSR（）**
+**谱形状残差 SSR**
+
 对于第 $i$ 个头，计算归一化奇异值向量：
+
 $$
-\tilde{s}_q^{(i)} = \frac{s_q^{(i)}}{\|s_q^{(i)}\|_2}, \quad
-\tilde{s}_k^{(i)} = \frac{s_k^{(i)}}{\|s_k^{(i)}\|_2}
+\tilde{s}_q^{(i)} = \frac{s_q^{(i)}}{\lVert s_q^{(i)} \rVert_2}, \qquad
+\tilde{s}_k^{(i)} = \frac{s_k^{(i)}}{\lVert s_k^{(i)} \rVert_2}
 $$
+
 该组内所有 Q 头相对于共享 K 头的 SSR 为：
+
 $$
-\mathrm{SSR}_{group} = \frac{1}{g} \sum_{j=1}^{g} \frac{1}{d_{\text{head}}} \sum_{t=1}^{d_{\text{head}}} \left|\tilde{s}_{q}^{(j,t)} - \tilde{s}_{k}^{(t)}\right|
+\text{SSR}_{\text{group}} = \frac{1}{g} \sum_{j=1}^{g} \frac{1}{d_{\text{head}}} \sum_{t=1}^{d_{\text{head}}}
+\bigl\lvert \tilde{s}_{q}^{(j,t)} - \tilde{s}_{k}^{(t)} \bigr\rvert
 $$
+
 整个层的 SSR 取所有组的平均值。
 
 ### 2.5 左奇异向量不需要对齐
 计算 $U_Q$ 与 $U_K$ 的列平均余弦相似度：
+
 $$
-\cos(U_Q, U_K) = \frac{1}{d_{\text{head}}} \sum_{i=1}^{d_{\text{head}}} \left|(U_Q)_{:,i}^T (U_K)_{:,i}\right|
+\cos(U_Q, U_K) = \frac{1}{d_{\text{head}}} \sum_{i=1}^{d_{\text{head}}}
+\bigl\lvert (U_Q)_{:,i}^{\mathsf{T}} (U_K)_{:,i} \bigr\rvert
 $$
+
 实验发现该值始终接近随机值（0.1 左右），表明左奇异向量的方向**不需要**对齐，这并非逻辑相干性的必要条件。
 
 ## 3. 第一定律：谱线性对齐
