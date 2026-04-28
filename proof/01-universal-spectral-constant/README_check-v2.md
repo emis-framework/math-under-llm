@@ -25,7 +25,7 @@ pip install torch safetensors numpy scipy
 
 ### 1. 准备模型权重文件
 
-模型下载link，可自行下载模型后，跑python 脚本验证：（可以之下第一个分片）
+模型下载link，可自行下载模型后，跑python 脚本验证：（可以只下第一个分片）
 
 https://hf-mirror.com/unsloth/llama-3-8b/tree/main
 
@@ -123,12 +123,3 @@ python check-llama-v2.py
 2. **权重加载**：脚本通过自动识别第 4 层的 Q 权重键名生成模板。若你的模型命名规则不同（如使用 `wq` 而非 `q_proj`），请手动修改 `template_q` 和 `template_k` 的正则匹配规则。
 
 3. **数值稳定性**：奇异值可能极小，计算 Pearson 时加法与除法会引入微小误差，但对整体相关系数影响可忽略（< 1e-5）。
-
-
-## 🤝 贡献与反馈
-
-如有问题或改进建议，欢迎提交 Issue 或 Pull Request。
-
----
-
-**作者声明**：本工具用于学术研究中的谱分析验证，不承担模型训练或商业用途责任。
