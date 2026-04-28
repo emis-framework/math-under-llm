@@ -1,8 +1,12 @@
 import torch
 from safetensors.torch import load_file
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, pearsonr
 import re
+
+# ---------------------------- 配置区 ----------------------------
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(f"使用设备: {DEVICE}")
 
 # 1. 指向你的 Gemma-4 权重文件
 FILE_PATH = "gemma-4-E2B-model.safetensors"
@@ -57,7 +61,7 @@ else:
 n_kv_heads = wk.shape[0] // D_HEAD
 print(f"识别到架构特征: D_HEAD = {D_HEAD}, KV_Heads = {n_kv_heads}")
 
-print(f"\n--- Google Gemma-4 物理对偶验证 (Layer {L}) ---")
+print(f"\n--- Google Gemma-4 物理谱相关性验证 (Layer {L}) ---")
 results = []
 for h in range(min(n_kv_heads, 8)): # 验证前 8 个头
     kh = wk[h*D_HEAD : (h+1)*D_HEAD, :]
@@ -65,11 +69,19 @@ for h in range(min(n_kv_heads, 8)): # 验证前 8 个头
     
     _, sk, _ = np.linalg.svd(kh)
     _, sq, _ = np.linalg.svd(qh)
+
+    # ---------- 计算两种相关性 ----------
+    # 1) Pearson 线性相关系数 (在 CPU 上计算，然后取标量)
+    pearson_r, _ = pearsonr(sq, sk)
+
+    # 2) Spearman 秩相关系数 (需要排序，移到 CPU 用 scipy 计算)
+    # 注意：scipy.stats.spearmanr 期望一维数组，np.asarray 会自动处理
+    spearman_r, _ = spearmanr(sq, sk)   
     
-    rho, _ = spearmanr(sq, sk)
+   
     diff = np.linalg.norm(qh - kh) / (np.linalg.norm(kh) + 1e-9)
-    results.append(rho)
-    print(f"Head {h:02d}: ρ = {rho:.6f} | diff = {diff:.4f}")
+    results.append(pearson_r)
+    print(f"Head {h:02d}: Pearson = {pearson_r:+.4f}, Spearman = {spearman_r:+.4f} | diff = {diff:.4f}")
 
 print(f"\n--- 最终结论 ---")
-print(f"平均谱相关性 ρ: {np.mean(results):.6f}")
+print(f"平均谱相关性 Pearson: {np.mean(results):.6f}")

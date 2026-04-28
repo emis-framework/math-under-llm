@@ -1,7 +1,7 @@
 import torch
 from safetensors.torch import load_file
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, pearsonr
 
 # 1. 指向 Qwen2.5-3B 的权重文件
 FILE_PATH = "qwen-model-00001-of-00002.safetensors" 
@@ -46,9 +46,10 @@ for kv_h in range(n_k_heads):
         _, sq, _ = np.linalg.svd(qh)
         
         # 验证谱相关性 (sq vs sk)
-        rho, _ = spearmanr(sq, sk)
+        pearson_r, _ = pearsonr(sq, sk)
+        spearman_r, _ = spearmanr(sq, sk)
         # 验证矩阵差异
         diff = np.linalg.norm(qh - kh) / (np.linalg.norm(kh) + 1e-9)
         
         if h_idx < 4: # 打印前几个头看规律
-            print(f"Head {h_idx}: 谱相关性 ρ = {rho:.6f}, 矩阵差异 = {diff:.4f}")
+            print(f"Head {h_idx}: Pearson = {pearson_r:+.4f}, Spearman = {spearman_r:+.4f} | diff = {diff:.4f}")

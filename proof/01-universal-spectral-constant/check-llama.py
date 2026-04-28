@@ -1,10 +1,10 @@
 import torch
 from safetensors.torch import load_file
 import numpy as np
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr,pearsonr
 
 # 1. 加载文件
-FILE_PATH = "llama-3-model-00001-of-00004.safetensors"
+FILE_PATH = "llama-3-8b-model-00001-of-00004.safetensors"
 weights = load_file(FILE_PATH)
 
 # --- 自动识别 Key 名 ---
@@ -39,14 +39,18 @@ wk = weights[template_k.format(L=L)]
 
 print(f"\n--- 物理验证结果 (Layer {L}) ---")
 for kv_h in range(N_KV_HEADS):
-    kh = wk[kv_h * D_HEAD : (kv_h + 1) * D_HEAD, :].to(torch.float32).numpy() #物理动作：你从庞大的权重矩阵中，精确切出了一个具体的 Key 头。
-    _, sk, _ = np.linalg.svd(kh) # 数学本质：通过 SVD（奇异值分解）提取该头的奇异值谱 ($s_k$)。这代表了该“字典索引”在空间中各个维度的能量分布。
+    kh = wk[kv_h * D_HEAD : (kv_h + 1) * D_HEAD, :].to(torch.float32).numpy()
+    _, sk, _ = np.linalg.svd(kh)
     
     for q_idx in range(GROUP_SIZE):
         h_idx = kv_h * GROUP_SIZE + q_idx
         qh = wq[h_idx * D_HEAD : (h_idx + 1) * D_HEAD, :].to(torch.float32).numpy()
         _, sq, _ = np.linalg.svd(qh)
+
+        # ---------- 计算两种相关性 ----------
+        # 1) Pearson 线性相关系数 (在 CPU 上计算，然后取标量)
+        pearson_r, _ = pearsonr(sq, sk)
         
-        inv_sk = 1.0 / (sk + 1e-6)
-        corr, _ = spearmanr(sq, inv_sk)
-        print(f"Group {kv_h} | Head {h_idx}: 谱相关系数 ρ = {corr:.4f}")
+        #inv_sk = 1.0 / (sk + 1e-6)
+        spearman_r, _ = spearmanr(sq, sk)
+        print(f"Group {kv_h} | Head {h_idx}: Pearson = {pearson_r:+.4f}, Spearman = {spearman_r:+.4f} ")
