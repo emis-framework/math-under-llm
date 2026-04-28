@@ -13,7 +13,7 @@ license: Apache-2.0
 repository-code: "https://github.com/emis-framework/math-under-llm"
 keywords:
   - "Wang's Law"
-  - "ρ=1"
+  - "r=1"
   - "Spectral Symmetry"
   - "Large Language Models"
   - "Mathematical Logic"

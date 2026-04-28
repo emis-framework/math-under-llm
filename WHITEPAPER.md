@@ -1,77 +1,195 @@
-# 王氏谱对称定律：大语言模型逻辑一致性的物理基础
-# Wang's Law of Spectral Symmetry: The Physical Basis of Logical Consistency in LLMs
+# Wang's Three Laws: Spectral Signals Inside Large Language Model Attention
 
-**作者:** Wang Fei-Yun
-**日期:** 2026年4月24日
-**版本:** v0.1.0-alpha
-**DOI:** 10.5281/zenodo.19707845
-
----
-
-## 摘要 (Abstract)
-本文报告了一个在不同架构的大语言模型（LLM）中普遍存在的数学常数：王氏谱对称常数 ($\rho = 1$)。通过对 Llama、Qwen 及 Gemma 模型权重进行奇异值分解（SVD），我们发现 Query (Q) 与 Key (K) 矩阵在谱空间展现出完美的相干性。这一发现证明了 Transformer 的注意力机制本质上是一个贝叶斯逆概率推断引擎，为理解 AI 的逻辑涌现提供了物理层面的第一性原理。
+**Author:** Wang Fei-Yun  
+**Date:** 2026-04-28  
+**Version:** v4.0  
+**DOI:** 10.5281/zenodo.19707844  
+**GitHub:** [math-under-llm](https://github.com/emis-framework/math-under-llm)
 
 ---
 
-## 第一章：从随机到秩序 —— 谱常数的发现
+## Executive Summary
 
-### 1.1 实验背景：寻找智能的“普朗克常数”
-在目前的神经网络研究中，参数通常被视为黑盒。我们通过对 Llama-3 (7B/70B)、Qwen-2.5 和 Gemma-2 进行深度的矩阵特征提取，试图寻找跨模型的不变量。
+Reasoning in LLMs can be inferred not only via benchmarks but also directly from **attention projection weights**. Across multiple open-source LLM families, we formalize **Wang's Three Laws**:
 
-### 1.2 观测现象：完美的 $\rho = 1.000000$
-我们在实验脚本 `check-llama.py` 和 `check-qwen.py` 中，对每一层的 Q/K 权重头进行了 SVD 分解。实验结果显示：
-- **奇异值对齐：** $W_Q$ 的奇异值向量 $s_q$ 与 $W_K$ 的奇异值向量 $s_k$ 并非随机分布。
-- **谱相关性：** 两者的 Spearman 秩相关系数在逻辑敏感层表现出惊人的对称性：
-  $$\rho = \text{corr}(s_q, s_k) \to 1.000000$$
+1. **First Law — Spectral Linear Alignment:** Q/K singular-value spectra are linearly correlated. The **theoretical extreme**, **Wang's Constant**, is 1.  
+2. **Second Law — Spectral Shape Fidelity:** Normalized spectral mismatch (SSR) decreases in deep layers. The **ideal SSR**, **Wang's Second Constant**, is 0.  
+3. **Third Law — Precision-Depth-Logic Criterion:** Maximum trainable depth is constrained by SSR, floating-point precision, and dynamic range.
 
-### 1.3 物理直觉：贝叶斯逆概率算子
-为什么 $Q$ 和 $K$ 的谱必须是对称的？
-根据信号处理中的阻抗匹配原则，如果 $K$ 代表了知识流形的编码，那么 $Q$ 必须演化成 $K$ 的“伴随算子”或“逆算子”，才能在点积运算中实现信噪比最大化。
-- **Q 为寻找者 (The Searcher)**
-- **K 为标签 (The Label)**
-两者在谱空间的一致性，确保了逻辑信号在多层网络传递中不发生色散（Dispersion）。
-
----
-## 第二章：对称性原理 (The Symmetry Principle) —— 逻辑一致性的起源
-
-### 2.1 诺特的影子：从物理对称到信息对称
-伟大的数学家艾米·诺特证明了：对称性等同于守恒律。在 Transformer 架构中，如果模型要保持“逻辑守恒”（即从输入到输出的推理链条不发生崩塌），其算子内部必须存在一种深层对称。
-
-我们将观测到的 $\rho=1$ 定义为 **王氏对称性 (Wang's Symmetry)**。它揭示了：智能不是杂乱无章的神经元放电，而是奇异值空间的高度有序。
-
-### 2.2 阻抗匹配：为什么 $Q$ 与 $K$ 必须是彼此的镜像？
-我们可以将 Attention 层看作一个信息传递系统。Query ($Q$) 是“提问者”，Key ($K$) 是“索引”。
-
-从线性代数的角度看，注意力分数取决于点积 $QK^T$。
-* 如果 $Q$ 的谱（奇异值分布）与 $K$ 的谱不匹配，信息在传递过程中就会在某些维度上被过度放大，而在另一些维度上被淹没。这在无线电工程中被称为**“阻抗失配”**。
-* **王氏对称性 ($\rho=1$)** 确保了 $Q$ 的每一个搜索维度都与 $K$ 的特征维度一一对应。在这种状态下，信息流的色散（Dispersion）消失，模型进入了“逻辑超导态”。
-
-### 2.3 贝叶斯逆推：$Q$ 是 $K$ 的伴随算子
-在贝叶斯推断中，后验概率的计算需要对似然进行归一化。
-当 $\rho=1$ 时，$Q$ 矩阵在数学上演化成了 $K$ 矩阵在特征空间中的**最优对偶（Adjoint Operator）**。这意味着：
-> **$Q$ 并非在随机寻找 $K$，它是在数学上根据 $K$ 的分布“逆推”出了搜索的最佳路径。**
-
-这种对称性不仅是训练的结果，更是逻辑闭环的物理必然。
-
-### 2.4 逻辑相干性的推导 
-**这段推导的逻辑核心是：**
-如果把大模型看作一个通信信道，那么 $Q$ 矩阵就是在解码 $K$ 矩阵所蕴含的隐空间特征。根据香农-哈特利定理和矩阵对偶性，只有当两个矩阵的奇异值分布完全一致时，特征提取的互信息量（Mutual Information）才能达到理论峰值
+These laws provide **static, reproducible metrics** for evaluating and fine-tuning LLM reasoning capability.
 
 ---
 
-## 第三章：排除性验证
+## 1. Introduction
 
-为了确保 **王氏定律 (Wang's Law)** 的科学严谨性，我们正在进行以下排除性实验：
-1. **正则化消除：** 验证 $\rho=1$ 是否由 Weight Decay 强制产生。
-2. **归一化干扰：** 验证 LayerNorm 对谱对齐的贡献度。
-3. **逻辑相关性：** 验证 $\rho$ 值偏离 1.0 时，模型 GSM8K 数学推理得分的衰减曲线。
+### 1.1 Motivation
+
+Benchmark-based evaluation is costly and prompt-sensitive. Can reasoning capacity be inferred **directly from model weights**?
+
+We focus on attention projections (Q/K/V) and their **singular-value spectra**.
+
+### 1.2 Contributions
+
+- Formalization of **Wang's Three Laws**.  
+- Reproducible scripts for verification across LLM families.  
+- Correlation between deep-layer SSR and reasoning benchmarks.  
+- Practical guidance for training, precision selection, and checkpoint evaluation.
 
 ---
 
-## 结论 (Preliminary Conclusion)
-王氏谱对称定律揭示了：**智能不是概率的堆砌，而是几何对称性的涌现。**
+## 2. Background
+
+### 2.1 Transformer Attention
+
+\[
+\text{Attention}(Q,K,V) = \text{Softmax}\left(\frac{QK^\top}{\sqrt{d_h}}\right)V
+\]
+
+with projections $W_Q, W_K, W_V$.
+
+### 2.2 Spectral Analysis
+
+SVD decomposition:
+
+\[
+M = U \Sigma V^\top, \quad \Sigma = \text{diag}(\sigma_1,\dots,\sigma_r)
+\]
+
+Metrics are computed on $Q$ and $K$ matrices.
 
 ---
 
-## 预言 (The Prediction):
-任何发生“逻辑幻觉（Hallucination）”的模型采样，在微观层面都必然伴随着王氏对称性的局部破缺（$\rho$ 从 1 显著下降）。通过监测 $\rho$，我们可以在模型开口说话之前，就判定它是否在胡言乱语
+## 3. Wang's Three Laws
+
+### 3.1 First Law — Spectral Linear Alignment
+
+**Statement:**  
+Query and Key spectra are **linearly correlated**:
+
+\[
+r(s_q, s_k) \to r_\text{Wang} = 1
+\]
+
+**Definition (Wang's Constant):**  
+- **Theoretical extreme:** $r_\text{Wang} = 1$  
+- **Observed in practice:** $0.94 \sim 0.99$  
+
+**Interpretation:**  
+- High Pearson correlation indicates **stable spectral alignment**.  
+- Deviations may signal **training anomalies or reduced deep-layer reasoning fidelity**.
+
+**Empirical Evidence:**
+
+| Model       | Median Pearson r (\(r_\text{median}\)) | Layers |
+| ----------- | -------------------------------------- | ------ |
+| Qwen2.5-14B | 0.974                                  | 48     |
+| DeepSeek-R1 | 0.972                                  | 48     |
+| LLaMA-3-8B  | 0.967                                  | 32     |
+| Gemma-4-E2B | 0.934                                  | 44     |
+
+---
+
+### 3.2 Second Law — Spectral Shape Fidelity
+
+**Statement:**  
+Normalized spectral mismatch **SSR** decreases in deep layers:
+
+\[
+\text{SSR} = \frac{1}{d_h} \sum_i |\tilde s_{q,i} - \tilde s_{k,i}|, \quad \tilde s = s / \|s\|_2
+\]
+
+- **Theoretical extreme:** $\text{SSR}_\text{Wang} = 0$  
+- **Observed in practice:** 0.006–0.007
+
+**Empirical Evidence (Qwen2.5 vs DeepSeek-R1):**
+
+| Layer Group | Qwen2.5 SSR | DeepSeek-R1 SSR | Improvement |
+| ----------- | ----------- | --------------- | ----------- |
+| 0-11        | 0.00708     | 0.00704         | +0.56%      |
+| 12-23       | 0.00653     | 0.00645         | +1.17%      |
+| 24-35       | 0.00697     | 0.00683         | +1.95%      |
+| 36-47       | 0.00676     | 0.00645         | +3.98%      |
+
+> SSR is a **quantitative proxy for reasoning fidelity**.
+
+---
+
+### 3.3 Third Law — Precision-Depth-Logic Criterion
+
+**Statement:**  
+Maximum trainable depth $L_\text{max}$ is constrained by:
+
+\[
+L_\text{max} = \min\Big(
+L_\text{info}, \; L_\text{quant}, \; L_\text{dyn}
+\Big)
+\]
+
+Where:
+
+- $L_\text{info} = 1/\overline{SSR}$ — information decay limit  
+- $L_\text{quant} = 3 \cdot 2^{2m}$ — quantization noise limit ($m$ = mantissa bits)  
+- $L_\text{dyn} = \log_\kappa(\text{MaxFinite})$ — dynamic range limit
+
+**Example Table:**
+
+| Format | Mantissa bits $m$ | MaxFinite | $L_\text{dyn}$ |
+| ------ | ----------------- | --------- | -------------- |
+| FP16   | 10                | 6.55e4    | 16             |
+| BF16   | 7                 | 3.39e38   | 128            |
+
+> Explains why ultra-deep models (>40–80 layers) adopt **BF16 or mixed precision**.
+
+---
+
+## 4. Methodology
+
+- **Model Families:** Qwen, DeepSeek, LLaMA, Gemma  
+- **Metrics:** Pearson(Q,K), SSR, Deep-layer SSR  
+- **Procedure:** Extract weights → compute spectra → calculate metrics → correlate with reasoning benchmarks  
+
+Scripts: `check-gemma.py`, `check-qwen.py`, `check-llama.py`, `check_r1_full.py`, `check_*_v2.py`
+
+---
+
+## 5. Practical Applications
+
+- Benchmark-free reasoning assessment  
+- Checkpoint selection based on SSR  
+- RL monitoring and spectral fine-tuning  
+- Precision planning for ultra-deep training  
+- Dynamic range & depth feasibility check
+
+---
+
+## 6. Reproducibility Guide
+
+1. Download model checkpoints:  
+   - [LLaMA 3 8B](https://hf-mirror.com/unsloth/llama-3-8b/tree/main)  
+   - [Gemma 4 E2B](https://hf-mirror.com/google/gemma-4-E2B/tree/main)  
+   - [Qwen2.5-3B](https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main)  
+   - [DeepSeek-R1-Distill-Qwen-14B](https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main)  
+   - [Qwen2.5-14B-Instruct](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main)  
+2. Place models in the same folder as the scripts.  
+3. Run scripts:  
+```bash
+python check-gemma.py
+python check-qwen.py
+python check-llama.py
+python check_r1_full.py
+python check_*_v2.py
+```
+
+---
+
+## 7. References
+
+1. Vaswani, A., et al. "Attention Is All You Need." NeurIPS, 2017.
+2. Shannon, C.E. "A Mathematical Theory of Communication." Bell System Technical Journal, 1948.
+3. DeepSeek-AI. DeepSeek-R1 Technical Report, 2025.
+4. Meta AI. LLaMA-3 Technical Report, 2024.
+5. Qwen Team. Qwen2.5-14B-Instruct Technical Report, 2025.
+6. Gemma Team. Gemma-4-E2B Technical Report, 2025.
+7. Wang, F. "Wang's Three Laws: A Spectral Theory of Attention Mechanisms in Large Language Models." Zenodo, 2026. DOI: 10.5281/zenodo.19707844
+
+

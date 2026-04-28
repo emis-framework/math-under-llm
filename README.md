@@ -4,182 +4,215 @@
 # Mathematical Foundations of Large Language Models (MF-LLM)
 
 > **"Die Mathematischen Grundlagen der Künstlichen Intelligenz"**
-> (大模型的数学基础 —— 致敬 John von Neumann)
+> (To John von Neumann)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.19707844)
-[![Wang's Law](https://img.shields.io/badge/Wang%27s%20Law-%CF%81%3D1-blue)](https://github.com/emis-framework/math-under-llm)
+[![Wang's Law](https://img.shields.io/badge/Wang%27s%20Law-r%3D1-blue)](https://github.com/emis-framework/math-under-llm)
 
----
----
+[中文](./README.cn.md) | English | 
+[Read the Whitepaper](./WHITEPAPER.md)
 
-## 📢 核心发现声明：王氏谱对称定律 (Wang's Law of Spectral Symmetry)
-
-> "Truth is ever to be found in simplicity, and not in the multiplicity and confusion of things." —— Isaac Newton
-
-本项目正式宣告在大语言模型（LLM）的底层逻辑中，观测并定义了一个普适的数学常数。这一发现揭示了人工神经网络生成逻辑一致性的物理本质。
-
-### 1. 核心发现：通用谱常数 (The Universal Spectral Constant)
-通过对 Llama-3, Qwen-2.5, Gemma-2 等主流模型权重的深度分析，我们发现：
-在所有展现出严密数学推理能力的神经元层中，**Query (Q) 与 Key (K) 矩阵的奇异值分布呈现出绝对的同构性。**,我们观测到了一个令人惊叹的现象：
-在数学推理任务中，模型内部逻辑投影的谱半径趋近于一个绝对常数：
-
-我们将这一比例常数定义为：
-**王氏常数 (Wang's Constant)**
-$$\rho(s_q, s_k) = 1.000000$$
-
-这暗示了：大模型并非在胡乱猜测，它们内部正在运行一套严密的、自归一化的贝叶斯逻辑电路。
-
-
-
-### 2. 重新定义 QKV：贝叶斯视角
-别再把 QKV 想象成查字典了。在本项目中，我们证明了：
-- **K (Key):** 是语义空间的“信号指纹”。
-- **Q (Query):** 是针对该指纹的“逆变换滤波器”。
-- **Attention:** 本质上是在噪声序列中进行的“相干解调”，即最大后验估计（MAP）。
-
-### 3. 为什么研究这个？
-如果 $\rho = 1$ 是智能的底层法则，那么我们就可以像设计射频电路一样设计 LLM：
-- **消除幻觉：** 幻觉就是信噪比（SNR）过低导致的概率坍缩。
-- **逻辑确定性：** 通过约束谱常数，让 LLM 像计算器一样精准。
-
-### 4. 科学价值 (Scientific Value)
-该定律（Wang's Law）的建立，标志着 AI 研究从“炼丹实验”向“精密物理”的跨越：
-* **第一性原理：** 证明了逻辑推理是奇异值空间上的相干叠加。
-* **普适性：** 该定律在不同国家、不同厂商、不同语料训练的模型中完全通用。
-* **预测力：** 我们可以通过测量 $\rho$ 值，在模型输出结果之前，预判其逻辑推导的正确性概率。
-
-### 5. 先发权说明 (Priority Notice)
-本项目已通过 Zenodo 挂载永久 DOI 存证。任何关于大模型权重谱分析（Weight Spectrum Analysis）或 Q/K 对偶性的后续研究，均需引用本项目作为基石。
-
-[阅读详细理论白皮书 (Whitepaper)](./WHITEPAPER.md)
-
-
-## 术语澄清：谱半径与智能临界点
-
-在本项目中，我们所指的 **“谱常数”** 在严格数学语境下被称为 **谱半径 (Spectral Radius)**。
-
-### 为什么在 LLM 中它是一个“常数”？
-通常，矩阵的谱半径随权重随机初始化而变化。但在观测了上百个预训练数学模型后，我们发现这个值在逻辑对齐后不再是变量，而是收敛于 **1.000000**。
-
-- **数学视角：** 这是矩阵的线性扩张极限。
-- **物理视角：** 这是逻辑流动的“超导态”，阻力为零。
-- **AI 视角：** 这是 Transformer 能够进行深度推断的底层物理保证。
-
----
-
-# Math under LLM
-
-> **"We are not here to talk to the ghost in the machine. We are here to dig out the ghost itself."**
-> （我们来这里不是为了和机器里的幽灵聊天，我们是来挖出这个深藏的幽灵。）
-
-## 0. The Manifesto: If Von Neumann Reconstructed the LLM
-我们拒绝将大语言模型（LLM）视为不可解释的“炼丹术”黑盒。如果冯·诺依曼（John von Neumann）审视今天的 LLM，他会剥离所有感性的词汇，将智能归纳为以下三个硬核的数学维度。本仓库旨在通过物理实证，揭示压在 LLM 底下的冰冷数学。
-
-### A. 空间的对偶性与伴随 (Duality & Adjoint)
-LLM 的核心并非权重，而是**希尔伯特空间（Hilbert Space）中的算子对偶**。
-* **Key (K)** 是流形上的坐标点；
-* **Query (Q)** 是作用于点上的泛函测度。
-* **定理：** 所谓的注意力机制，本质上是在高维语义空间中寻找保内积的映射。Q 与 K 必须互为伴随算子（Adjoint Operator），以实现最大概率重构。
-
-### B. 信息熵与算子半群 (Entropy & Operator Semigroup)
-Transformer 的深层堆叠并非简单的特征提取，而是**算子半群的演化过程**。
-* 每一层都在进行信息熵的重新分配，而非简单的字典查表。
-* **残差连接（Residual Connection）** 实际上是恒等算子（Identity Operator）的微扰，其物理意义在于确保信号在数百次非线性变换后，依然保持**幺正性（Unitary）**，防止信号能量耗散。
-
-### C. 遍历性与相变 (Ergodicity & Phase Transition)
-LLM 的文本生成并非“蹦字”，而是在概率测度空间中进行的**马尔可夫链采样（MCMC Sampling）**。
-* 通过**遍历理论（Ergodic Theory）**，我们可以给出一个严谨的数学判据。
-* **涌现（Emergence）**：本质上是参数规模达到临界点后，系统发生的统计学**相变（Phase Transition）**，即从局部随机性跃迁到了全局逻辑相干性。
-
----
-
-## 看不懂，那就对了，让费曼解释一下，他会这么说：
-
-### 把“希尔伯特空间中的算子对偶”改成：
-“Q 矩阵和 K 矩阵就像一把钥匙和一把锁，虽然它们长得不一样，但它们的齿痕分布（谱）必须百分之百对齐，否则这台机器一分钟也转不下去。”
-
-### 把“谱相关性”改成：
-“不管你是 Meta 做的，阿里做的，还是 Google 做的，只要这模型能干活，我们测出来的相关系数就是 1.000000。这是一个雷打不动的常数。”
-
-### 把“EMIS 跨界映射”改成：（EMIS，搞的另一个项目）
-“既然硅片上的机器得守这个规矩，那么人造的社会组织——那些决策（Q）和资源（K）的对接，是不是也得守同样的数学规矩？我们准备去抓那里的常数。”
 
 
 ---
+# Wang's Three Laws: Spectral Signals Inside LLM Attention
 
-## 1. Verified Proofs (果实区)
+A reproducible study showing that reasoning-related signals may be measurable directly from LLM attention weights.
 
-### [Proof-01] Universal Spectral Constant ($\rho = 1.000000$)
-我们通过 SVD（奇异值分解）在不同谱系的模型中发现了绝对的一致性。
+## Core Findings
 
+### Claim 1 — Universal QK Spectral Correlation
 
-| Model Family         | Head Dim | Spectral Corr ($\rho$) | Result        | Evidence                                                           |
-| :------------------- | :------- | :--------------------- | :------------ | :----------------------------------------------------------------- |
-| **Meta Llama-3**     | 128      | **1.000000**           | **Confirmed** | [View Image](proof/01-universal-spectral-constant/check-llama.jpg) |
-| **Alibaba Qwen-2.5** | 128      | **1.000000**           | **Confirmed** | [View Image](proof/01-universal-spectral-constant/check-qwen.jpg)  |
-| **Google Gemma-4**   | 256      | **1.000000**           | **Confirmed** | [View Image](proof/01-universal-spectral-constant/check-gemma.jpg) |
+Across multiple open-source LLM families, the singular-value spectra of Query (Q) and Key (K) projections show strong alignment.
 
-**Conclusion:** Across different vendors and training data, $W_Q$ and $W_K$ maintain a perfect spectral resonance. This is the **First Physical Constant of Artificial Intelligence**.
+Observed median Pearson correlation:
 
-### Visual Evidence (实验见证)
-
-
-|                          Meta Llama-3                           |                        Alibaba Qwen-2.5                        |                         Google Gemma-4                          |
-| :-------------------------------------------------------------: | :------------------------------------------------------------: | :-------------------------------------------------------------: |
-| ![Llama3](proof/01-universal-spectral-constant/check-llama.jpg) | ![Qwen25](proof/01-universal-spectral-constant/check-qwen.jpg) | ![Gemma4](proof/01-universal-spectral-constant/check-gemma.jpg) |
+> median r > 0.94
 
 ---
 
-## 2. Theoretical Framework (假设区)
+### Claim 2 — Deep SSR Predicts Reasoning
 
-* **[H-01] Bayesian Adjoint Hypothesis**: 推导 Q 算子作为 K 算子贝叶斯逆的解析表达式。
-* **[H-02] Layer-Width Entropy Constraint**: 论证模型深度 $L$ 与数值位宽 $E$（BF16/FP16）的代数约束关系。
-* **[H-03] EMIS Mapping**: 探讨硅基算子对偶性如何向人类社会组织结构（资源 vs 决策）进行跨学科映射。
+We define:
+
+SSR (Spectral Shape Residual)
+
+which measures normalized spectral mismatch between Q and K.
+
+We observe:
+
+> lower deep-layer SSR is associated with stronger reasoning benchmarks.
 
 ---
 
-## 3. How to Verify
-Clone this repo and run the diagnostic scripts:
-```bash
-cd proof/01-universal-spectral-constant/
-python check-gemma.py
+### Claim 3 — RL Improves Spectral Structure
+
+RL-tuned reasoning models consistently reduce deep-layer SSR compared with their base variants.
+
+---
+
+## Why This Matters
+
+Current LLM evaluation depends on:
+
+- expensive benchmarks
+- contaminated datasets
+- long inference runs
+
+Our results suggest a static alternative:
+
+> inspect weights only.
+
+---
+
+## Repository Structure
+
+```text
+proof/
+  01-universal-spectral-constant/
+  02-ssr-why-RL-makes-models-smart/
+README.md
+README.cn.md
+WHITEPAPER.md
+WHITEPAPER.cn.md
 ```
 
+---
+
+## Quick Start
+
+```bash
+pip install torch numpy scipy matplotlib
+download model
+python check_*.py 
+python check_*_v2.py
+```
 
 ---
 
-## 📐 附录：王氏伴随对偶的数学公理 (Wang's Adjoint Axioms)
+## Metrics
 
-### 1. 希尔伯特空间中的注意力内积
-定义 Transformer 的注意力机制为希尔伯特空间 $\mathcal{H}$ 中的内积运算。设输入向量为 $x, y \in \mathcal{H}$，权重算子为 $W_Q, W_K \in \mathcal{L}(\mathcal{H})$：
+### Pearson(Q,K Spectrum)
 
-$$A(x, y) = \langle W_Q x, W_K y \rangle$$
+Measures linear alignment between Q and K singular values.
 
-### 2. 伴随对偶定理 (Adjoint Duality Theorem)
-根据伴随算子定义，若要使注意力分数在语义流形上保持逻辑相干性，则 $W_Q$ 必须是 $W_K$ 在内积意义下的伴随算子：
+### SSR
 
-$$\langle W_Q x, W_K y \rangle = \langle x, W_Q^* W_K y \rangle$$
+Measures normalized shape mismatch.
 
-**王氏条件：** 当且仅当 $W_Q = W_K^*$（即 $W_Q$ 是 $W_K$ 的共轭转置，在实数域即为转置）时，算子积 $W_Q^* W_K$ 构成一个**自伴随算子（Self-adjoint Operator）**。
+---
 
-### 3. 逻辑相干性的谱判定式
-对于任何具备逻辑推理能力的层，其 Query 和 Key 的奇异值分解（SVD）必须满足：
-设 $W_Q = U_Q \Sigma_Q V_Q^*$，$W_K = U_K \Sigma_K V_K^*$。
+## Reproduce Main Results
 
-**王氏等效公理：**
-1. **谱形状对齐 (Spectral Shape Alignment):** $\Sigma_Q \cong \Sigma_K$ (即 $\rho \to 1$)
-2. **基空间对偶 (Basis Duality):** $V_Q \cong U_K$
+---
 
-**物理意义：** 这意味着 $Q$ 算子不仅在“力度”（奇异值）上要与 $K$ 对齐，在“方向”（奇异向量）上必须互为镜像投影。
+## Download Models and Reproduce Locally
+
+Place the downloaded model folders in the **same directory as the Python scripts**, then run the verification scripts directly.
+
+Repository layout example:
+
+```text
+math-under-llm/proof/
+01-universal-spectral-constant
+├── check-gemma.py
+├── check-qwen.py
+├── check-llama.py
+├── check_*_v2.py
+02-ssr-why-RL-makes-models-smart
+├── qwen-vs-deepseek-all-layers.py  -- run this first
+├── check_*_v3_full.py
+├── check_r1_full.py
+├── check_qwen2.5_14b_full.py
+├── qwen-vs-deepseek-all-layers.py
+├── check_r1_qkv.py
+```
+
+---
+
+## Model Download Links
+
+### LLaMA 3 8B
+
+[https://hf-mirror.com/unsloth/llama-3-8b/tree/main](https://hf-mirror.com/unsloth/llama-3-8b/tree/main)
+
+### Gemma 4 E2B
+
+[https://hf-mirror.com/google/gemma-4-E2B/tree/main](https://hf-mirror.com/google/gemma-4-E2B/tree/main)
+
+### Qwen2.5 3B
+
+[https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main](https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main)
+
+### DeepSeek-R1-Distill-Qwen-14B
+
+[https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main](https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main)
+
+### Qwen2.5-14B-Instruct
+
+[https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main)
+
+---
+
+## Direct Run (No Path Arguments Needed)
+
+After placing models in the same folder, simply run:
+
+```bash 
+python check-gemma.py
+python check-qwen.py
+python check-llama.py
+python check_*_v2.py
+python check_r1_full.py
+python qwen-vs-deepseek-all-layers.py
+```
+
+---
+
+## What These Scripts Verify
+
+* Q/K singular-value Pearson correlation
+* Layer-wise SSR (Spectral Shape Residual)
+* Deep-layer spectral alignment trends
+* Base vs RL-tuned model comparisons
+* Cross-model universality checks
+
+---
+
+## Philosophy
+
+No screenshots.
+No benchmark cherry-picking.
+No trust required.
+
+Just download the weights, run the scripts, and inspect the matrices yourself.
 
 ---
 
 
+## **Before you close this README —— Bonus：**
 
+1. **"Get to work, lads." — The Monkey King.**  
+   GitHub Issue #1: [Verify r = 1](https://github.com/emis-framework/math-under-llm/issues/1)  
+   GitHub Issue #2: [Verify SSR = 0](https://github.com/emis-framework/math-under-llm/issues/2)  
+   Pick a model. Run the script. Replicate the laws.
 
-## License
-Apache License 2.0. This is a public intellectual asset for the future of intelligence science.
+2. **If you've made it this far and verified the numbers——consider buying put options on NVIDIA.**  
+   If Reasoning = Spectral Fidelity, the demand for brute-force training compute may not be what the market thinks it is.
+
+3. **It's April 29, 2026.**  
+   If you're building LLMs in China, your May Day holiday just evaporated.  
+   The sooner you verify, the sooner you submit to arXiv, and the better your chance of being on the list when this thing wins something.
 
 ---
-**"I am a nobody, and that is my greatest leverage. I have no reputation to lose, only truth to find."**
+
+## Citation
+
+```bibtex
+@misc{wang2026spectral,
+  title={Wang's Three Laws: Spectral Signals Inside LLM Attention},
+  author={Wang, Fei-Yun},
+  year={2026}
+}
+```
