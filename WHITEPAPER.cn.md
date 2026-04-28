@@ -42,15 +42,15 @@ Transformer 的注意力机制是 LLM 的核心。但长期以来，我们缺乏
 
 ### 2.1 GQA 权重分解
 考虑一个 GQA 层：  
-Query 投影 \(W_Q \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}\)，Key 投影 \(W_K \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}\)。  
-将 \(W_Q\) 按行分割为 \(N_q\) 个头（每个头维度 \(d_{\text{head}}\)），同理 \(W_K\) 分割为 \(N_{kv}\) 个头。GQA 组大小为 \(g = N_q / N_{kv}\)。
+Query 投影 $W_Q \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}$，Key 投影 $W_K \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}$。  
+将 $W_Q$ 按行分割为 $N_q$ 个头（每个头维度 $d_{\text{head}}$），同理 $W_K$ 分割为 $N_{kv}$ 个头。GQA 组大小为 $g = N_q / N_{kv}$。
 
 ### 2.2 奇异值分解
-对每个头矩阵 \(M \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}\) 执行 SVD：
+对每个头矩阵 $M \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}$ 执行 SVD：
 $$
 M = U \Sigma V^T
 $$
-其中 \(\Sigma = \mathrm{diag}(s_1, s_2, ..., s_{d_{\text{head}}})\)，奇异值满足 \(s_1 \ge s_2 \ge ... \ge s_{d_{\text{head}}}\)。
+其中 $\Sigma = \mathrm{diag}(s_1, s_2, ..., s_{d_{\text{head}}})$，奇异值满足 $s_1 \ge s_2 \ge ... \ge s_{d_{\text{head}}}$。
 
 
 ### 2.3 第一定律
@@ -61,20 +61,20 @@ $$
 > r(s_q, s_k) = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,i} - \bar{s}_q)^2 \sum_i (s_{k,i} - \bar{s}_k)^2}}
 > $$
 
-理想情况下，完全线性相关时 \(r = 1\)。实验观测表明，主流模型（LLaMA-3, Qwen-2.5, Gemma-4）的 \(r\) 稳定在 **0.94～0.99**，显著高于随机基线。我们将这一普适高相关值下的常数（或下界）称为 **王氏常数**。
+理想情况下，完全线性相关时 $r = 1$。实验观测表明，主流模型（LLaMA-3, Qwen-2.5, Gemma-4）的 $r$ 稳定在 **0.94～0.99**，显著高于随机基线。我们将这一普适高相关值下的常数（或下界）称为 **王氏常数**。
 
 ---
 
 **要点**：
-- 使用 **Pearson \(r\)**。
-- 理想值 \(r=1\)（完全正相关），但实际模型接近此值。
+- 使用 **Pearson $r$**。
+- 理想值 $r=1$（完全正相关），但实际模型接近此值。
 - 此定律不依赖于 SVD 排序的伪影，因为 Pearson 不受排序强制为 1 的影响（两个降序序列的 Pearson 可以小于 1）。
 
 ---
 
 ### 2.4 第二定律
 **谱形状残差 SSR（）**
-对于第 \(i\) 个头，计算归一化奇异值向量：
+对于第 $i$ 个头，计算归一化奇异值向量：
 $$
 \tilde{s}_q^{(i)} = \frac{s_q^{(i)}}{\|s_q^{(i)}\|_2}, \quad
 \tilde{s}_k^{(i)} = \frac{s_k^{(i)}}{\|s_k^{(i)}\|_2}
@@ -86,13 +86,11 @@ $$
 整个层的 SSR 取所有组的平均值。
 
 ### 2.5 左奇异向量不需要对齐
-计算 \(U_Q\) 与 \(U_K\) 的列平均余弦相似度：
+计算 $U_Q$ 与 $U_K$ 的列平均余弦相似度：
 $$
 \cos(U_Q, U_K) = \frac{1}{d_{\text{head}}} \sum_{i=1}^{d_{\text{head}}} \left|(U_Q)_{:,i}^T (U_K)_{:,i}\right|
 $$
 实验发现该值始终接近随机值（0.1 左右），表明左奇异向量的方向**不需要**对齐，这并非逻辑相干性的必要条件。
-
----
 
 ## 3. 第一定律：谱线性对齐
 
