@@ -41,9 +41,9 @@ We focus on attention projections (Q/K/V) and their **singular-value spectra**.
 
 ### 2.1 Transformer Attention
 
-\[
+$$
 \text{Attention}(Q,K,V) = \text{Softmax}\left(\frac{QK^\top}{\sqrt{d_h}}\right)V
-\]
+$$
 
 with projections $W_Q, W_K, W_V$.
 
@@ -51,9 +51,9 @@ with projections $W_Q, W_K, W_V$.
 
 SVD decomposition:
 
-\[
+$$
 M = U \Sigma V^\top, \quad \Sigma = \text{diag}(\sigma_1,\dots,\sigma_r)
-\]
+$$
 
 Metrics are computed on $Q$ and $K$ matrices.
 
@@ -66,9 +66,9 @@ Metrics are computed on $Q$ and $K$ matrices.
 **Statement:**  
 Query and Key spectra are **linearly correlated**:
 
-\[
+$$
 r(s_q, s_k) \to r_\text{Wang} = 1
-\]
+$$
 
 **Definition (Wang's Constant):**  
 - **Theoretical extreme:** $r_\text{Wang} = 1$  
@@ -80,12 +80,12 @@ r(s_q, s_k) \to r_\text{Wang} = 1
 
 **Empirical Evidence:**
 
-| Model       | Median Pearson r (\(r_\text{median}\)) | Layers |
-| ----------- | -------------------------------------- | ------ |
-| Qwen2.5-14B | 0.974                                  | 48     |
-| DeepSeek-R1 | 0.972                                  | 48     |
-| LLaMA-3-8B  | 0.967                                  | 32     |
-| Gemma-4-E2B | 0.934                                  | 44     |
+| Model       | Median Pearson r ($r_\text{median}$) | Layers |
+| ----------- | ------------------------------------ | ------ |
+| Qwen2.5-14B | 0.974                                | 48     |
+| DeepSeek-R1 | 0.972                                | 48     |
+| LLaMA-3-8B  | 0.967                                | 32     |
+| Gemma-4-E2B | 0.934                                | 44     |
 
 ---
 
@@ -94,9 +94,9 @@ r(s_q, s_k) \to r_\text{Wang} = 1
 **Statement:**  
 Normalized spectral mismatch **SSR** decreases in deep layers:
 
-\[
+$$
 \text{SSR} = \frac{1}{d_h} \sum_i |\tilde s_{q,i} - \tilde s_{k,i}|, \quad \tilde s = s / \|s\|_2
-\]
+$$
 
 - **Theoretical extreme:** $\text{SSR}_\text{Wang} = 0$  
 - **Observed in practice:** 0.006–0.007
@@ -119,11 +119,11 @@ Normalized spectral mismatch **SSR** decreases in deep layers:
 **Statement:**  
 Maximum trainable depth $L_\text{max}$ is constrained by:
 
-\[
+$$
 L_\text{max} = \min\Big(
 L_\text{info}, \; L_\text{quant}, \; L_\text{dyn}
 \Big)
-\]
+$$
 
 Where:
 

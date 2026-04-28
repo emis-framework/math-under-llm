@@ -202,7 +202,7 @@ Just download the weights, run the scripts, and inspect the matrices yourself.
    If Reasoning = Spectral Fidelity, the demand for brute-force training compute may not be what the market thinks it is.
 
 3. **It's April 29, 2026.**  
-   If you're building LLMs in China, your May Day holiday just evaporated.  
+   If you're building LLMs in China, sorry，your May Day holiday just evaporated.  
    The sooner you verify, the sooner you submit to arXiv, and the better your chance of being on the list when this thing wins something.
 
 ---
