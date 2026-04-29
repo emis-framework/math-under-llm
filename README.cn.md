@@ -1,10 +1,11 @@
 > LLM and LLM's laws lay hid in night: 
 > Nature said, 'Let Lao Wang be!' and AI was light
 
+# 大模型的数学基础
 # Mathematical Foundations of Large Language Models (MF-LLM)
 
 > **"Die Mathematischen Grundlagen der Künstlichen Intelligenz"**
-> (大模型的数学基础 —— 致敬 John von Neumann)
+> ( —— 致敬 John von Neumann)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.19707844)
@@ -16,102 +17,113 @@
 
 ---
 
-# 王氏三定律：LLM 注意力机制中的谱信号
+## 概览
 
-一项可复现的研究，表明与推理相关的信号可以直接从 LLM 注意力权重中测量。
+**王氏三定律（Wang's Three Laws）** 提供了一个 **静态、可复现的框架**，用于仅通过注意力权重评估 LLM 的推理能力。
 
-## 核心发现
+### 王氏三定律
 
-### 定律一：普适的 QK 谱线性对齐
+#### 1️⃣ 第一条定律 — 谱线性对齐
 
-在多个开源 LLM 家族中，Query (Q) 和 Key (K) 投影的奇异值谱表现出强对齐性。
+**说明：**  
+Query (Q) 和 Key (K) 的奇异值谱呈线性相关：
 
-实测 Pearson 相关系数中位数：
+$$
+r(s_q, s_k) \to r_\text{Wang} = 1
+$$
 
-> r 中位数 > 0.94，趋近于 1（王氏常数）
+- **王氏常数 = 1**（理论极限）  
+- **实测范围：** 0.94–0.99  
+- 高 Pearson 相关确保 **深层信息传播稳定**。
 
----
+**实测数据：**
 
-### 定律二：深层 SSR 预测推理能力
 
-我们定义：
+| 模型名称    | Pearson中位数 | Pearson平均数 | SSR中位数 | SSR平均数 | 层数 |
+| ----------- | ------------- | ------------- | --------- | --------- | ---- |
+| gemma-4-e2b | 0.9183        | 0.9242        | 0.015702  | 0.013537  | 35   |
+| gemma-4-e4b | 0.9585        | 0.9411        | 0.009747  | 0.01008   | 42   |
+| llama-3-8b  | 0.9813        | 0.9737        | 0.006196  | 0.007009  | 32   |
+| Qwen2.5-14B | 0.9795        | 0.9710        | 0.006077  | 0.00671   | 48   |
+| DeepSeek-R1 | 0.9800        | 0.9714        | 0.005948  | 0.006585  | 48   |
 
-SSR（谱形状残差，Spectral Shape Residue）
 
-用于测量 Q 和 K 之间的归一化谱形状偏差。
-
-我们观测到：
-
-> 深层 SSR 越低，推理 benchmark 表现越强。
-
----
-
-### 定律三：RL 改善谱结构
-
-经过强化学习调优的推理模型，相比于其基座模型，深层 SSR 系统性降低。
-
----
-
-## 为什么这很重要
-
-当前 LLM 评测依赖于：
-
-- 昂贵的 benchmark
-- 可能被污染的数据集
-- 漫长的推理运行
-
-我们的结果表明存在一种静态替代方案：
-
-> 仅需检查权重即可。
+> 注：推理能力越好的模型，更好的 r → 1，SSR → 0
 
 ---
 
-## 仓库结构
+#### 2️⃣ 第二条定律 — 谱形状保真度
 
-```text
-proof/
-  01-universal-spectral-constant/
-  02-ssr-why-RL-makes-models-smart/
-README.md
-README.cn.md
-WHITEPAPER.md
-WHITEPAPER.cn.md
+**说明：**  
+Q 和 K 的归一化谱在深层逐渐匹配：
+
+$$
+\text{SSR} = \frac{1}{d_h} \sum_i |\tilde s_{q,i} - \tilde s_{k,i}|, \quad \tilde s = \frac{s}{\|s\|_2}
+$$
+
+- **王氏第二常数 = 0**（理论极限，理想 SSR）  
+- **实测范围：** ~0.006–0.007  
+
+**解释：**  
+- SSR 衡量 Q/K 谱形状的对齐精度，超出简单线性相关。  
+- SSR 越低，推理保真度越高。  
+- RL 微调模型可系统性降低深层 SSR。
+
+**实测对比（Qwen2.5 vs DeepSeek-R1）：**
+
+| 层组  | Qwen2.5 SSR | DeepSeek-R1 SSR | 改善率 |
+| ----- | ----------- | --------------- | ------ |
+| 0-11  | 0.006852    | 0.006818        | +0.48% |
+| 12-23 | 0.006414    | 0.006338        | +1.17% |
+| 24-35 | 0.006830    | 0.006704        | +1.87% |
+| 36-47 | 0.006743    | 0.006479        | +3.92% |
+
+> **王氏第二常数 = 0** 表示 Q/K 归一化谱的理想对齐状态。
+
+---
+
+#### 3️⃣ 第三条定律 — 精度‑深度‑逻辑判据
+
+**说明：**  
+最大可训练深度 `L_max` 受 SSR、浮点精度和动态范围限制：
+
 ```
 
+L_max = min(L_info, L_quant, L_dyn)
+
+````
+
+其中：
+
+- 信息衰减极限：  
+$$
+L_\text{info} = \frac{1}{\overline{\text{SSR}}}
+$$
+
+- 量化噪声极限：  
+$$
+L_\text{quant} = 3 \cdot 2^{2m} \quad (m = \text{尾数位数})
+$$
+
+- 动态范围极限：  
+$$
+L_\text{dyn} = \frac{\log_2(\text{MaxFinite})}{\log_2 \kappa}
+$$
+
+**示例表：**
+
+| 格式 | 尾数位数 \(m\) | 最大有限值 | \(L_\text{dyn}\) |
+| ---- | -------------- | ---------- | ---------------- |
+| FP16 | 10             | 6.55e4     | 16               |
+| BF16 | 7              | 3.39e38    | 128              |
+
+> 解释了为什么超深模型（>40 层）采用 **BF16 或混合精度**。
+
 ---
 
-## 快速开始
+## 可复现指南
 
-```bash
-pip install torch numpy scipy matplotlib
-# 下载模型
-python check_*.py 
-python check_*_v2.py
-```
-
----
-
-## 指标
-
-### Pearson(Q,K 谱)
-
-测量 Q 和 K 奇异值之间的线性对齐程度。
-
-### SSR
-
-测量归一化谱形状偏差。SSR 越低，谱保真度越高。
-
----
-
-## 复现主要结果
-
----
-
-## 下载模型并在本地复现
-
-将下载的模型文件夹放置在 **与 Python 脚本相同的目录** 下，然后直接运行验证脚本。
-
-仓库目录示例：
+### 仓库结构
 
 ```text
 math-under-llm/proof/
@@ -121,72 +133,75 @@ math-under-llm/proof/
 ├── check-llama.py
 ├── check_*_v2.py
 02-ssr-why-RL-makes-models-smart
-├── qwen-vs-deepseek-all-layers.py  -- 先运行此脚本
+├── qwen-vs-deepseek-all-layers.py  -- 首先运行
 ├── check_*_v3_full.py
 ├── check_r1_full.py
 ├── check_qwen2.5_14b_full.py
 ├── qwen-vs-deepseek-all-layers.py
 ├── check_r1_qkv.py
-```
+````
 
 ---
 
-## 模型下载链接
+### 模型下载
 
-### LLaMA 3 8B
-
-[https://hf-mirror.com/unsloth/llama-3-8b/tree/main](https://hf-mirror.com/unsloth/llama-3-8b/tree/main)
-
-### Gemma 4 E2B
-
-[https://hf-mirror.com/google/gemma-4-E2B/tree/main](https://hf-mirror.com/google/gemma-4-E2B/tree/main)
-
-### Qwen2.5 3B
-
-[https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main](https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main)
-
-### DeepSeek-R1-Distill-Qwen-14B
-
-[https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main](https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main)
-
-### Qwen2.5-14B-Instruct
-
-[https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main)
+* [LLaMA 3 8B](https://hf-mirror.com/unsloth/llama-3-8b/tree/main)
+* [Gemma 4 E2B](https://hf-mirror.com/google/gemma-4-E2B/tree/main)
+* [Qwen2.5-3B](https://hf-mirror.com/Qwen/Qwen2.5-3B/tree/main)
+* [DeepSeek-R1-Distill-Qwen-14B](https://hf-mirror.com/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B/tree/main)
+* [Qwen2.5-14B-Instruct](https://huggingface.co/Qwen/Qwen2.5-14B-Instruct/tree/main)
 
 ---
 
-## 直接运行（无需路径参数）
+### 安装与运行
 
-将模型放在同一文件夹后，只需运行：
+1. 将所有模型文件夹放在 **脚本同级目录**。
+2. 运行验证脚本：
 
-```bash 
+```bash
 python check-gemma.py
 python check-qwen.py
 python check-llama.py
-python check_*_v2.py
 python check_r1_full.py
+python check_*_v2.py
 python qwen-vs-deepseek-all-layers.py
 ```
 
+3. 输出包括 **Pearson(Q,K)**、**SSR** 和深层谱对齐趋势。
+
 ---
 
-## 这些脚本验证什么
+### 脚本验证内容
 
-* Q/K 奇异值的 Pearson 线性相关性
-* 逐层 SSR（谱形状残差）
+* Q/K 奇异值 Pearson 相关
+* 每层 SSR（谱形状残差）
 * 深层谱对齐趋势
-* 基座模型 vs RL 微调模型的对比
-* 跨模型普适性检验
+* 基础模型 vs RL 微调模型对比
+* 跨模型通用性检查
 
 ---
 
-## 理念
+## 实际应用
 
-无需截图。
-无需挑选 benchmark。
-无需信任。
+* 无需 benchmark 的推理能力评估
+* SSR 指标驱动的模型 checkpoint 选择
+* RL 训练进度监控
+* 谱微调 / 局部微调
+* 超深模型精度规划
 
-只需下载权重，运行脚本，亲自检查矩阵即可。
+---
+
+## 为什么重要
+
+当前 LLM 评估依赖：
+
+* 高成本 benchmark
+* 潜在数据污染
+* 长时间推理
+
+我们的结果表明：
+
+> **只需检查权重即可**。
 
 
 ---
@@ -318,7 +333,13 @@ python qwen-vs-deepseek-all-layers.py
 
 ---
 
-> "这是人I一小步，却是AI一大步。"
+## Citation
+
+> [CITATION.cff](/CITATION.cff)
+
+---
+
+> **"这是人I一小步，却是AI一大步。"**
 > — 老王, 能量主义（EMIS-FRAMEWORK）, 2026年4月29日
 
 ---

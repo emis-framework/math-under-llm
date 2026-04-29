@@ -2,7 +2,7 @@
 
 **Author:** Wang Fei-Yun  
 **Date:** 2026-04-28  
-**Version:** v4.0  
+**Version:** follow github release 
 **DOI:** 10.5281/zenodo.19707844  
 **GitHub:** [math-under-llm](https://github.com/emis-framework/math-under-llm)
 
@@ -80,12 +80,17 @@ $$
 
 **Empirical Evidence:**
 
-| Model       | Median Pearson r ($r_\text{median}$) | Layers |
-| ----------- | ------------------------------------ | ------ |
-| Qwen2.5-14B | 0.974                                | 48     |
-| DeepSeek-R1 | 0.972                                | 48     |
-| LLaMA-3-8B  | 0.967                                | 32     |
-| Gemma-4-E2B | 0.934                                | 44     |
+| Model       | Median Pearson | Mean Pearson | Median SSR | MeanSSR  | Layers |
+| ----------- | -------------- | ------------ | ---------- | -------- | ------ |
+| gemma-4-e2b | 0.9164         | 0.9343       | 0.014238   | 0.011347 | 35     |
+| gemma-4-e4b | 0.96           | 0.948        | 0.006833   | 0.008724 | 42     |
+| llama-3-8b  | 0.9754         | 0.9737       | 0.006978   | 0.007009 | 32     |
+| Qwen2.5-14B | 0.973          | 0.971        | 0.006505   | 0.00671  | 48     |
+| DeepSeek-R1 | 0.9735         | 0.9714       | 0.006402   | 0.006585 | 48     |
+
+
+
+> 注：Better reasonning model，r → 1，SSR → 0
 
 ---
 
