@@ -239,7 +239,7 @@ pip install torch safetensors numpy scipy
 
 让我们建立更严格的框架。
 
-设输入空间 $\mathcal{X} = \mathbb{R}^{d_{\text{model}}}$，输出空间为 $\mathcal{H}_Q = \mathbb{R}^{d_{\text{head}}}$，$\mathcal{H}_K = \mathbb{R}^{d_{\text{head}}}$。投影矩阵 $W_Q: \mathcal{X} \to \mathcal{H}_Q$，$W_K: \mathcal{X} \to \mathcal{H}_K$。定义双线性形式 $B(x,y) = \langle W_Q x, W_K y \rangle_{\mathcal{H}}$。这是注意力分数的核心（忽略 softmax）。
+设输入空间 $\mathcal{X} = \mathbb{R}^{d_{\text{model}}}$，输出空间为 $\mathcal{H}_Q = \mathbb{R}^{d_{\mathrm{head}}}$，$\mathcal{H}_K = \mathbb{R}^{d_{\mathrm{head}}}$。投影矩阵 $W_Q: \mathcal{X} \to \mathcal{H}_Q$，$W_K: \mathcal{X} \to \mathcal{H}_K$。定义双线性形式 $B(x,y) = \langle W_Q x, W_K y \rangle_{\mathcal{H}}$。这是注意力分数的核心（忽略 softmax）。
 
 **谱分解**：考虑算符 $T = W_Q^\top W_K : \mathcal{X} \to \mathcal{X}$。它是一个线性算符，其奇异值分解为 $T = \tilde{U} \Sigma \tilde{V}^\top$，其中 $\tilde{U}, \tilde{V}$ 是 $\mathcal{X}$ 上的正交矩阵。但是 $W_Q$ 和 $W_K$ 各自也拥有 SVD：$W_Q = U_q \Sigma_q V_q^\top$，$W_K = U_k \Sigma_k V_k^\top$。则
 $$
