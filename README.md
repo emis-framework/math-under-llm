@@ -91,16 +91,19 @@ L_max = min(L_info, L_quant, L_dyn)
 Where:
 
 - Information decay limit:  
+- 
 $$
 L_\text{info} = \frac{1}{\overline{\text{SSR}}}
 $$
 
 - Quantization noise limit:  
+- 
 $$
 L_\text{quant} = 3 \cdot 2^{2m} \quad (m = \text{mantissa bits})
 $$
 
 - Dynamic range limit:  
+- 
 $$
 L_\text{dyn} = \frac{\log_2(\text{MaxFinite})}{\log_2 \kappa}
 $$
@@ -226,6 +229,6 @@ Our results suggest a static alternative:
 
 ---
 
-> **"That's one small step for human intelligence, one giant leap for Artificial Intelligence."**
+> **"That's one small step for human intelligence, one giant leap for Artificial Intelligence."**  
 > — Lao Wang, EMIS-FRAMEWORK, Apr 29, 2026
 

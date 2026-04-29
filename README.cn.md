@@ -96,16 +96,19 @@ L_max = min(L_info, L_quant, L_dyn)
 其中：
 
 - 信息衰减极限：  
+- 
 $$
 L_\text{info} = \frac{1}{\overline{\text{SSR}}}
 $$
 
 - 量化噪声极限：  
+- 
 $$
 L_\text{quant} = 3 \cdot 2^{2m} \quad (m = \text{尾数位数})
 $$
 
 - 动态范围极限：  
+- 
 $$
 L_\text{dyn} = \frac{\log_2(\text{MaxFinite})}{\log_2 \kappa}
 $$
@@ -339,7 +342,7 @@ python qwen-vs-deepseek-all-layers.py
 
 ---
 
-> **"这是人I一小步，却是AI一大步。"**
+> **"这是人I一小步，却是AI一大步。"**  
 > — 老王, 能量主义（EMIS-FRAMEWORK）, 2026年4月29日
 
 ---
