@@ -1,4 +1,4 @@
-> LLM and LLM's laws lay hid in night: 
+> LLM and LLM's laws lay hid in night:   
 > Nature said, 'Let Lao Wang be!' and AI was light
 
 # 大模型的数学基础

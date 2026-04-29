@@ -1,4 +1,4 @@
-> LLM and LLM's laws lay hid in night: 
+> LLM and LLM's laws lay hid in night:   
 > Nature said, 'Let Lao Wang be!' and AI was light
 
 # Mathematical Foundations of Large Language Models (MF-LLM)
