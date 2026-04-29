@@ -47,9 +47,11 @@ Query 投影 $W_Q \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}$，Key
 
 ### 2.2 奇异值分解
 对每个头矩阵 $M \in \mathbb{R}^{d_{\text{head}}\times d_{\text{model}}}$ 执行 SVD：
+
 $$
 M = U \Sigma V^T
 $$
+
 其中 $\Sigma = \mathrm{diag}(s_1, s_2, ..., s_{d_{\text{head}}})$，奇异值满足 $s_1 \ge s_2 \ge ... \ge s_{d_{\text{head}}}$。
 
 
@@ -228,9 +230,11 @@ $$
 | BF16 | 7        | $3\cdot 2^{14}\approx 4.9\times 10^{4}$  | $3.39\times 10^{38}$ | $\log_{2}(3.39\times 10^{38}) / 1 \approx 128$ |
 
 代入定理公式：
+
 $$
 L_{\max}(\text{FP16}) = \min\bigl(L_{\text{info}},\; 3.15\times 10^{6},\; \mathbf{16}\bigr) \le \mathbf{16}
 $$
+
 $$
 L_{\max}(\text{BF16}) = \min\bigl(L_{\text{info}},\; 4.9\times 10^{4},\; \mathbf{128}\bigr) \le \mathbf{128}
 $$
@@ -245,30 +249,43 @@ FP16 的极限瓶颈 $L_{\text{dyn}}=16$ 远小于当前大模型的典型深度
 **问题**：传闻 GPT‑5 约 196 层，纯 BF16 能否直接训练？
 
 **第一步：计算理论要求**。由定理：
+
 $$
 L_{\max} \approx 196 \;\Rightarrow\; \delta = \overline{\text{SSR}} \le \frac{1}{L_{\max}} \approx 0.0051
 $$
+
 当前 R1 深层 $\overline{\text{SSR}}\approx 0.006$，需再将谱形状残差压低约 15%。同时，平均放大因子 $\kappa$ 必须足够小，使得动态范围能够支撑。
 
 **第二步：BF16 动态范围充要条件**：
+
 $$
 L_{\text{dyn}} = \frac{\log_{2}(3.39\times 10^{38})}{\log_{2}\kappa} \ge 196 \;\Longrightarrow\; \log_{2}\kappa \le \frac{128}{196} \approx 0.653
 $$
+
 即要求：
+
 $$
 \kappa \le 2^{0.653} \approx 1.57
 $$
+
 这意味着除首层外的所有深层，`cond(Q)` 必须控制在约 **1.6 以下**。R1 深层实测 `cond(Q)` 落在 2‑4 区间，因此纯 BF16 **无法直接满足**。
 
 **第三步：可行方案——混合精度**。已知 R1 的 Layer 1 存在条件数爆炸 ($ \kappa_1 \approx 1000$)，单层消耗约 10 位指数。采用 **Layer 1 用 FP32**，其余 195 层用 BF16 的混合策略：
 - FP32 首层动态范围：$\log_{2}(3.4\times 10^{38}) = 128$，容纳 $\kappa_1=1000$ 后余 118 位。
-- 剩余 195 层 BF16 需满足：$195\cdot \log_2 \kappa \le 118 \;\Rightarrow\; \kappa \le 2^{118/195}\approx 1.52$。
+- 剩余 195 层 BF16 需满足：
+- 
+$$
+195\cdot \log_2 \kappa \le 118 \;\Rightarrow\; \kappa \le 2^{118/195}\approx 1.52
+$$。
+
 - 即深层 `cond(Q)` 必须进一步压至 **1.5 以下**（或通过牛顿‑舒尔茨正交化实现）。
 
 **第四步：带宽与容量**。SSR = 0.005 时，单头单层容量：
+
 $$
 C = 128\cdot\log_2(1+1/0.005) \approx 128\times 7.65 \approx 979\ \text{bits}
 $$
+
 196 层累积约 $1.9\times 10^{5}$ 比特，远大于词表区分所需的 ~15 比特。**带宽非瓶颈**。
 
 **最终预判**：
@@ -292,14 +309,15 @@ $$
 假设系统的动力学由以下作用量控制：
 
 $$
-\mathcal{W} = \sum_{l=1}^{L} \Bigl[ -I(X_{l-1}; X_l) + \beta \cdot \text{SSR}_l^2 + \gamma \cdot (\log \kappa_l)^2 \Bigr]
-\tag{6.1}
+\mathcal{W} = \sum_{l=1}^{L} \Bigl[ -I(X_{l-1}; X_l) + \beta \cdot \mathrm{SSR}_l^2 + \gamma \cdot (\log \kappa_l)^2 \Bigr]
 $$
+
+*(Equation 6.1)*
 
 其中：
 
 * $X_l$ 为第 $l$ 层的隐藏状态（归一化激活值）；
-* $I(X_{l-1}; X_l)$ 为相邻层之间的互信息。在高斯近似下,$I \approx \frac{1}{2} \log \frac{\det(\Sigma_{X_{l-1}})}{\det(\Sigma_{X_{l-1}|X_l})}$；
+* $I(X_{l-1}; X_l)$ 为相邻层之间的互信息。在高斯近似下, $I \approx \frac{1}{2} \log \frac{\det(\Sigma_{X_{l-1}})}{\det(\Sigma_{X_{l-1}|X_l})}$ ；
 * $\text{SSR}_l$ 为谱形状残差,度量 Q/K 归一化奇异值序列的 L1 偏差；
 * $\kappa_l = \text{cond}(Q_l)$ 为 Q 投影矩阵的条件数,代表该层对信号幅度的最大放大因子；
 * $\beta, \gamma > 0$ 为拉格朗日乘子,对应热力学中的“逆温度”参数。
@@ -321,12 +339,12 @@ $$
 **三定律的统一导出**：
 
 * **第一定律**（谱线性对齐）：当 $\text{SSR}_l \to 0$,即 $\tilde{s}_q^{(l)} \to \tilde{s}_k^{(l)}$ 逐点对齐时,两点间 Pearson 相关系数必然趋近 1。这等价于 Q/K 谱空间中的 L1 距离最小化。
-* **第二定律**（谱形状对齐）：$\text{SSR}_l \to 0$ 项直接源于作用量中的耗散项 $\beta \cdot \text{SSR}_l^2$。深层 SSR 越低,说明该层越接近平衡态。
-* **第三定律**（精度-深度判据）：$\log \kappa_l$ 项约束了每层对动态范围的消耗。有限数值精度下,总动态范围有上限,因此层数 $L$ 受限于 $\sum_{l=1}^L \log \kappa_l \le \log_2(\text{MaxFinite})$。这与之前推导的 $L_{\text{dyn}} = \log_{\kappa}(\text{MaxFinite})$ 完全一致。
+* **第二定律**（谱形状对齐）： $\text{SSR}_l \to 0$ 项直接源于作用量中的耗散项 $\beta \cdot \text{SSR}_l^2$。深层 SSR 越低,说明该层越接近平衡态。
+* **第三定律**（精度-深度判据）： $\log \kappa_l$ 项约束了每层对动态范围的消耗。有限数值精度下,总动态范围有上限,因此层数 $L$ 受限于 $\sum_{l=1}^L \log \kappa_l \le \log_2(\text{MaxFinite})$。这与之前推导的 $L_{\text{dyn}} = \log_{\kappa}(\text{MaxFinite})$ 完全一致。
 
 **尚待完成的工作**：
 
-1. 严格证明在随机梯度下降下,$\frac{d\mathcal{W}}{dt} \le 0$（即作用量随训练单调递减）；
+1. 严格证明在随机梯度下降下, $\frac{d\mathcal{W}}{dt} \le 0$ （即作用量随训练单调递减）；
 2. 推导 $\beta, \gamma$ 与学习率、批量大小、模型维度等超参数的理论关系；
 3. 在小模型上设计“作用量最小化”作为正则项的实验,验证其能否加速收敛或提升深层推理能力。
 
@@ -349,8 +367,9 @@ $$
 
 $$
 \text{score}(\mathbf{q}_i, \mathbf{k}_j) = \langle \mathbf{q}_i, \mathbf{k}_j \rangle_{\mathcal{H}_K}
-\tag{6.2}
 $$
+
+*(Equation 6.2)*
 
 这正是 scaled dot-product attention 在算子理论中的本质形式——注意力分数不是任意函数,而是内积,其合理性由 Riesz 定理保证。
 
@@ -358,8 +377,9 @@ $$
 
 $$
 \|\rho_Q - \alpha \rho_K\|_1 \to 0
-\tag{6.3}
 $$
+
+*(Equation 6.3)*
 
 即 Q 和 K 的能量分布具有统计相似性,差异仅为全局尺度因子 $\alpha$。这是平衡态的特征——Q 和 K 并非彼此独立,而是在高维语义空间中协同演化至一对“共轭分布”。
 
@@ -369,15 +389,17 @@ $$
 
 $$
 X_{\text{out}} = T_L \circ T_{L-1} \circ \cdots \circ T_1 (X_{\text{in}})
-\tag{6.4}
 $$
+
+*(Equation 6.4)*
 
 这构成一个**离散算子半群** $\{T_l\}_{l=1}^L$。残差连接确保了恒等算子 $I$ 始终作为微扰存在：
 
 $$
 T_l = I + \epsilon \cdot F_l
-\tag{6.5}
 $$
+
+*(Equation 6.5)*
 
 若每层 $\|T_l\| \le 1$（收缩算子）,则深层演化是稳定的,信号能量不爆炸。但若某层 $\|T_l\| > 1$,则需通过残差连接中的恒等算子和归一化层共同约束——这正是我们在 Layer 1 观测到的“条件数爆炸”的算子解释：这是边界层效应,而非缺陷。
 
