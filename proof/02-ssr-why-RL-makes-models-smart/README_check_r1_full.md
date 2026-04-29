@@ -260,7 +260,9 @@ $$
 
 $$
 B(x,y)=\langle W_Qx,\;W_Ky\rangle_{\mathcal H}
-$$这是注意力分数的核心（忽略 softmax）。
+$$
+
+这是注意力分数的核心（忽略 softmax）。
 
 **谱分解**：
 
