@@ -39,19 +39,21 @@ pip install torch safetensors numpy
 
 - 将 Qwen2.5-14B-Instruct 和 DeepSeek-R1-Distill-Qwen-14B 的权重文件（`.safetensors` 格式）放在脚本同级目录下。
 - 文件名需包含 `Qwen2.5-14B-Instruct-model` 和 `DeepSeek-R1-Distill-Qwen-14B-model` 子串（脚本自动识别）。
-- 下载好模型后改名如下：
-DeepSeek-R1-Distill-Qwen-14B-model-00001-of-000004.safetensors
-DeepSeek-R1-Distill-Qwen-14B-model-00002-of-000004.safetensors
-DeepSeek-R1-Distill-Qwen-14B-model-00003-of-000004.safetensors
-DeepSeek-R1-Distill-Qwen-14B-model-00004-of-000004.safetensors
-Qwen2.5-14B-Instruct-model-00001-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00002-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00003-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00004-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00005-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00006-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00007-of-00008.safetensors
-Qwen2.5-14B-Instruct-model-00008-of-00008.safetensors
+- **下载好模型后改名如下：**
+  
+
+- DeepSeek-R1-Distill-Qwen-14B-model-00001-of-000004.safetensors
+- DeepSeek-R1-Distill-Qwen-14B-model-00002-of-000004.safetensors
+- DeepSeek-R1-Distill-Qwen-14B-model-00003-of-000004.safetensors
+- DeepSeek-R1-Distill-Qwen-14B-model-00004-of-000004.safetensors
+- Qwen2.5-14B-Instruct-model-00001-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00002-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00003-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00004-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00005-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00006-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00007-of-00008.safetensors
+- Qwen2.5-14B-Instruct-model-00008-of-00008.safetensors
 
 
 ### 执行脚本
