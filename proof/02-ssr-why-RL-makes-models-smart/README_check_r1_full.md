@@ -20,9 +20,9 @@ KV头 0 | Q头  0: Pearson=+0.6391 Spearman=+1.0000 α=0.4444(残差=1.03e-01) c
 - **定义**：Q 投影和 K 投影的奇异值序列（降序）之间的 **皮尔逊线性相关系数**。
 - **计算**：对同一个 K 头，取 Q 头和 K 头的奇异值序列（截断至相同长度），计算皮尔逊 `r`。
 
-\[
+$$
 r = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,i} - \bar{s}_q)^2 \sum_i (s_{k,i} - \bar{s}_k)^2}}
-\]
+$$
 
 - **含义**：衡量 Q 与 K 的奇异值序列在**线性趋势**上的一致性。  
   - `r ≈ 1`：奇异值序列几乎呈完美线性关系（`s_q ≈ a·s_k + b`）。  
@@ -45,9 +45,9 @@ r = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,
 - **定义**：最小二乘拟合 `s_q ≈ α · s_k` 的**比例系数**。
 - **计算**：
 
-\[
+$$
 α = \frac{\sum_i s_{q,i} s_{k,i}}{\sum_i s_{k,i}^2}
-\]
+$$
 
 并给出**残差** `α残差 = mean((s_q - α·s_k)^2)`。
 
@@ -64,9 +64,9 @@ r = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,
 - **定义**：Q 投影左奇异向量矩阵 `U_q` 与 K 投影左奇异向量矩阵 `U_k` 的**对角线平均绝对余弦相似度**。
 - **计算**：
 
-\[
+$$
 \cos_{\mathrm{diag}} = \frac{1}{d_{\mathrm{head}}} \sum_{i=1}^{d_{\mathrm{head}}} |u_{q,i}^T u_{k,i}|
-\]
+$$
 
 其中 `u_{q,i}` 为 `U_q` 的第 i 列（单位化后）。
 
@@ -81,9 +81,9 @@ r = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,
 - **定义**：比较 `W_q W_q^T` 与 `α^2 W_k W_k^T` 的相对 Frobenius 误差。
 - **计算**：
 
-\[
+$$
 \mathrm{cov\_err} = \frac{\| W_q W_q^T - α^2 W_k W_k^T \|_F}{\| W_q W_q^T \|_F + \varepsilon}
-\]
+$$
 
 - **含义**：衡量 Q、K 权重在该头空间中的整体协方差结构匹配程度（尺度按 α 对齐后）。  
   该指标与 Pearson 无单调关系，但可辅助判断头级功能差异。
@@ -95,9 +95,9 @@ r = \frac{\sum_i (s_{q,i} - \bar{s}_q)(s_{k,i} - \bar{s}_k)}{\sqrt{\sum_i (s_{q,
 - **定义**：**归一化奇异值**序列之间的 **平均绝对偏差（L1 距离）**。
 - **计算**：
 
-\[
+$$
 \mathrm{SSR} = \frac{1}{g d_{\mathrm{head}}} \sum_{j} \sum_{t} \left| \frac{s_q^{(j,t)}}{\|s_q^{(j)}\|} - \frac{s_k^{(t)}}{\|s_k\|} \right|
-\]
+$$
 
 （此处对每个 KV 组内所有 Q 头与共享 K 头计算，脚本中已按头对输出）
 
@@ -242,9 +242,9 @@ pip install torch safetensors numpy scipy
 设输入空间 \(\mathcal{X} = \mathbb{R}^{d_{\text{model}}}\)，输出空间为 \(\mathcal{H}_Q = \mathbb{R}^{d_{\text{head}}}\)，\(\mathcal{H}_K = \mathbb{R}^{d_{\text{head}}}\)。投影矩阵 \(W_Q: \mathcal{X} \to \mathcal{H}_Q\)，\(W_K: \mathcal{X} \to \mathcal{H}_K\)。定义双线性形式 \(B(x,y) = \langle W_Q x, W_K y \rangle_{\mathcal{H}}\)。这是注意力分数的核心（忽略 softmax）。
 
 **谱分解**：考虑算符 \(T = W_Q^\top W_K : \mathcal{X} \to \mathcal{X}\)。它是一个线性算符，其奇异值分解为 \(T = \tilde{U} \Sigma \tilde{V}^\top\)，其中 \(\tilde{U}, \tilde{V}\) 是 \(\mathcal{X}\) 上的正交矩阵。但是 \(W_Q\) 和 \(W_K\) 各自也拥有 SVD：\(W_Q = U_q \Sigma_q V_q^\top\)，\(W_K = U_k \Sigma_k V_k^\top\)。则
-\[
+$$
 T = V_q \Sigma_q U_q^\top U_k \Sigma_k V_k^\top.
-\]
+$$
 令 \(U_{qk} = U_q^\top U_k\)，这是一个 \(d_{\text{head}} \times d_{\text{head}}\) 的矩阵，它连接了两个输出空间的正交基。注意 \(U_{qk}\) 不一定是对角阵。它的奇异值决定了 \(U_q\) 和 \(U_k\) 列之间的对齐程度。
 
 你观察到的 \(\cos(U_q, U_k) \approx 0.1\) 意味着 \(U_{qk}\) 的对角元素很小，即 \(U_q\) 的第 \(i\) 列几乎与 \(U_k\) 的第 \(i\) 列正交。但 \(U_{qk}\) 的非对角元可以很大。这等价于说 \(U_q\) 和 \(U_k\) 是**几乎互斥的正交基**，即它们张成的子空间在 \(\mathbb{R}^{d_{\text{head}}}\) 中是互补的，事实上由于两者都是正交矩阵，\(U_q^\top U_k\) 本身是一个正交矩阵（如果 \(d_{\text{head}} = d_{\text{head}}\)）。正交矩阵的所有行和列都是单位向量，其对角元平均值的平方等于 \(1/d_{\text{head}}\)。当 \(d_{\text{head}}=128\) 时，随机正交矩阵的对角元绝对值期望约为 \(\sqrt{1/d_{\text{head}}} \approx 0.088\)。这正是你测量到的 0.1 左右！  
