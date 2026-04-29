@@ -1,6 +1,8 @@
 > LLM and LLM's laws lay hid in night:   
 > Nature said, 'Let Lao Wang be!' and AI was light.
 
+TL;DR: By applying SVD to the Q/K weight matrices of LLMs, we discovered two universal cross-model regularities — r = 1 (Spectral Linear Alignment) and SSR → 0 (Spectral Shape Fidelity). No inference, no benchmarks — just inspect the weights to assess a model's reasoning capability.
+
 # Mathematical Foundations of Large Language Models (MF-LLM)
 
 > **"Die Mathematischen Grundlagen der Künstlichen Intelligenz"**

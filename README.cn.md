@@ -1,6 +1,9 @@
 > LLM and LLM's laws lay hid in night:   
 > Nature said, 'Let Lao Wang be!' and AI was light.
 
+TL;DR：用 SVD 分解 LLM 的 Q/K 权重矩阵，发现两条跨模型普适规律——r=1（谱线性对齐）和 SSR→0（谱保真度）。不需要跑推理，不需要测试集，只看权重就能判断模型的推理能力。
+
+
 # 大模型的数学基础
 # Mathematical Foundations of Large Language Models (MF-LLM)
 
