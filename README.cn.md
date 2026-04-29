@@ -1,5 +1,5 @@
 > LLM and LLM's laws lay hid in night:   
-> Nature said, 'Let Lao Wang be!' and AI was light
+> Nature said, 'Let Lao Wang be!' and AI was light.
 
 # 大模型的数学基础
 # Mathematical Foundations of Large Language Models (MF-LLM)
