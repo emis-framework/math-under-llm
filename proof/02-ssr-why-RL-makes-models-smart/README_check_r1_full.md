@@ -260,7 +260,9 @@ $$
 
 $$
 B(x,y)=\langle W_Qx,\;W_Ky\rangle_{\mathcal H}
-$$这是注意力分数的核心（忽略 softmax）。
+$$
+
+这是注意力分数的核心（忽略 softmax）。
 
 **谱分解**：
 
@@ -293,6 +295,7 @@ $$
 $$
 T = V_q \Sigma_q U_q^\top U_k \Sigma_k V_k^\top.
 $$
+
 令 $U_{qk} = U_q^\top U_k$，这是一个 $d_{\text{head}} \times d_{\text{head}}$ 的矩阵，它连接了两个输出空间的正交基。注意 $U_{qk}$ 不一定是对角阵。它的奇异值决定了 $U_q$ 和 $U_k$ 列之间的对齐程度。
 
 你观察到的 $\cos(U_q, U_k) \approx 0.1$ 意味着 $U_{qk}$ 的对角元素很小，即 $U_q$ 的第 $i$ 列几乎与 $U_k$ 的第 $i$ 列正交。但 $U_{qk}$ 的非对角元可以很大。这等价于说 $U_q$ 和 $U_k$ 是**几乎互斥的正交基**，即它们张成的子空间在 $\mathbb{R}^{d_{\text{head}}}$ 中是互补的，事实上由于两者都是正交矩阵，$U_q^\top U_k$ 本身是一个正交矩阵（如果 $d_{\text{head}} = d_{\text{head}}$）。正交矩阵的所有行和列都是单位向量，其对角元平均值的平方等于 $1/d_{\text{head}}$。当 $d_{\text{head}}=128$ 时，随机正交矩阵的对角元绝对值期望约为 $\sqrt{1/d_{\text{head}}} \approx 0.088$。这正是你测量到的 0.1 左右！  
