@@ -208,7 +208,7 @@ Just download the weights, run the scripts, and inspect the matrices yourself.
 ---
 
 > "That's one small step for human intelligence, one giant leap for Artificial Intelligence."
-> — Lao Wang, EMIS-FRAMEWORK, Apr 20, 2026
+> — Lao Wang, EMIS-FRAMEWORK, Apr 29, 2026
 
 ---
 
