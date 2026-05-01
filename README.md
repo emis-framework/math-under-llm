@@ -81,6 +81,8 @@ $$
 
 > **Wang's Second Constant = 0** represents the ideal alignment of normalized Q/K spectra.
 
+![R1 vs Qwen2.5-14B SSR Comparison](plot/r1_vs_qwen2.5_14b_comparison-ssr.jpg)
+
 ---
 
 #### 3️⃣ Third Law — Precision-Depth-Logic Criterion

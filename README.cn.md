@@ -83,6 +83,8 @@ $$
 
 > **王氏第二常数 = 0** 表示 Q/K 归一化谱的理想对齐状态。
 
+![R1 vs Qwen2.5-14B SSR Comparison](plot/r1_vs_qwen2.5_14b_comparison-ssr.jpg)
+
 ---
 
 #### 3️⃣ 第三条定律 — 精度‑深度‑逻辑判据
