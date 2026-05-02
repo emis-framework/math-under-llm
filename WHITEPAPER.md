@@ -141,7 +141,7 @@ Where:
 
 | Format | Mantissa bits $m$ | MaxFinite | $L_\text{dyn}$ |
 | ------ | ----------------- | --------- | -------------- |
-| FP16   | 10                | 7.55e4    | 16             |
+| FP16   | 10                | 6.55e4    | 16             |
 | BF16   | 7                 | 3.39e38   | 128            |
 
 > Explains why ultra-deep models (>40–80 layers) adopt **BF16 or mixed precision**.
