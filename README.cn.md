@@ -12,6 +12,8 @@ TL;DR：用 SVD 分解 LLM 的 Q/K 权重矩阵，发现两条跨模型普适规
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.19707844)
+[![HAL](https://img.shields.io/badge/HAL-hal--05609398-red)](https://hal.science/hal-05609398)
+[![OSF](https://img.shields.io/badge/OSF-10.17605%2FOSF.IO%2FJHA53-lightblue)](https://doi.org/10.17605/OSF.IO/JHA53)
 [![Wang's Law](https://img.shields.io/badge/Wang%27s%20Law-r%3D1-blue)](https://github.com/emis-framework/math-under-llm)
 
 中文 | [English](./README.md)

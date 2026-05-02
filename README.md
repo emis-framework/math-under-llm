@@ -10,6 +10,8 @@ TL;DR: By applying SVD to the Q/K weight matrices of LLMs, we discovered two uni
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.19707844-blue.svg)](https://doi.org/10.5281/zenodo.19707844)
+[![HAL](https://img.shields.io/badge/HAL-hal--05609398-red)](https://hal.science/hal-05609398)
+[![OSF](https://img.shields.io/badge/OSF-10.17605%2FOSF.IO%2FJHA53-lightblue)](https://doi.org/10.17605/OSF.IO/JHA53)
 [![Wang's Law](https://img.shields.io/badge/Wang%27s%20Law-r%3D1-blue)](https://github.com/emis-framework/math-under-llm)
 
 [中文](./README.cn.md) | English | 
