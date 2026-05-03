@@ -15,6 +15,10 @@ Reasoning in LLMs can be inferred not only via benchmarks but also directly from
 1. **First Law — Spectral Linear Alignment:** Q/K singular-value spectra are linearly correlated. The **theoretical extreme**, **Wang's Constant**, is 1.  
 2. **Second Law — Spectral Shape Fidelity:** Normalized spectral mismatch (SSR) decreases in deep layers. The **ideal SSR**, **Wang's Second Constant**, is 0.  
 3. **Third Law — Precision-Depth-Logic Criterion:** Maximum trainable depth is constrained by SSR, floating-point precision, and dynamic range.
+4. **Fourth Law — Output Subspace Decoupling**
+Left singular vectors of Q and K are near random orthogonal; those of Q/V and K/V are super‑orthogonal (~20% below random), decoupling attention matching from content readout.
+5. **Fifth Law — Input Subspace Randomness**
+Right singular vectors of Q, K, and V exhibit global random orthogonality, enabling free and independent feature extraction from the token embedding.
 
 These laws provide **static, reproducible metrics** for evaluating and fine-tuning LLM reasoning capability.
 
@@ -148,7 +152,7 @@ Where:
 
 ---
 
-### 3.4️⃣ Fourth Law — Global Decoupling of Output Subspaces
+### 3.4 Fourth Law — Global Decoupling of Output Subspaces
 
 **Description:**  
 The left singular vectors (output subspaces) of the Q, K, V matrices in attention exhibit a systematic geometric structure:
@@ -158,7 +162,7 @@ The left singular vectors (output subspaces) of the Q, K, V matrices in attentio
 
 **Mathematical Expression:**
 
-Let \( U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h} \) be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
+Let $U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h}$ be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
 
 $$
 \overline{\cos}(U_A, U_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle u_{A,i}, u_{B,i} \rangle|
@@ -176,32 +180,32 @@ $$
 
 **Empirical Results (cross‑model averages):**
 
-| Model                        | \(d_h\) | Random Baseline | \(\overline{\cos}(U_Q,U_K)\) | \(\overline{\cos}(U_Q,U_V)\) | \(\overline{\cos}(U_K,U_V)\) |
-| ---------------------------- | ------- | --------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| Qwen2.5‑14B‑Instruct         | 128     | 0.0884          | 0.0981                       | **0.0704**                   | **0.0702**                   |
-| DeepSeek‑R1‑Distill‑Qwen‑14B | 128     | 0.0884          | 0.0982                       | **0.0705**                   | **0.0699**                   |
-| LLaMA‑3‑8B                   | 128     | 0.0884          | 0.0949                       | **0.0707**                   | **0.0705**                   |
-| Gemma‑4‑31B (text)           | 256     | 0.0625          | 0.0630                       | **0.0497**                   | **0.0500**                   |
-| Gemma‑4‑31B (vision)         | 128     | 0.0884          | 0.1024                       | **0.0714**                   | **0.0713**                   |
+| Model                        | $d_h$ | Random Baseline | $\overline{\cos}(U_Q,U_K)$ | $\overline{\cos}(U_Q,U_V)$ | $\overline{\cos}(U_K,U_V)$ |
+| ---------------------------- | ----- | --------------- | -------------------------- | -------------------------- | -------------------------- |
+| Qwen2.5‑14B‑Instruct         | 128   | 0.0884          | 0.0981                     | **0.0704**                 | **0.0702**                 |
+| DeepSeek‑R1‑Distill‑Qwen‑14B | 128   | 0.0884          | 0.0982                     | **0.0705**                 | **0.0699**                 |
+| LLaMA‑3‑8B                   | 128   | 0.0884          | 0.0949                     | **0.0707**                 | **0.0705**                 |
+| Gemma‑4‑31B (text)           | 256   | 0.0625          | 0.0630                     | **0.0497**                 | **0.0500**                 |
+| Gemma‑4‑31B (vision)         | 128   | 0.0884          | 0.1024                     | **0.0714**                 | **0.0713**                 |
 
 > **Super‑orthogonality** is defined as cosine values systematically below the random expectation, typically by about **20%**. This phenomenon appears consistently across all tested models and modalities, indicating that pretraining actively pushes the value output subspace away from the Q/K output subspaces.
 
 ---
 
-### 3.5️⃣ Fifth Law — Global Random Orthogonality of Input Subspaces
+### 3.5 Fifth Law — Global Random Orthogonality of Input Subspaces
 
 **Description:**  
 The right singular vectors (input subspaces) of Q, K, V in the high‑dimensional token space exhibit near‑random alignment, with no structural coupling. This means the model freely and independently selects sensitive directions from the input embedding, without a mandatory shared basis.
 
 **Mathematical Expression:**
 
-Let \( V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h} \) be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
+Let $V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h}$ be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
 
 $$
 \overline{\cos}(V_A, V_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle v_{A,i}, v_{B,i} \rangle|
 $$
 
-Compared with the random baseline \( 1/\sqrt{d_{\text{model}}} \):
+Compared with the random baseline $1/\sqrt{d_{\text{model}}}$:
 
 $$
 \overline{\cos}(V_Q, V_K) \approx \overline{\cos}(V_Q, V_V) \approx \overline{\cos}(V_K, V_V) \approx \frac{1}{\sqrt{d_{\text{model}}}}
@@ -209,13 +213,13 @@ $$
 
 **Empirical Results (cross‑model averages):**
 
-| Model                        | \(d_{\text{model}}\) | Random Baseline | \(\overline{\cos}(V_Q,V_K)\) | \(\overline{\cos}(V_Q,V_V)\) | \(\overline{\cos}(V_K,V_V)\) |
-| ---------------------------- | -------------------- | --------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| Qwen2.5‑14B‑Instruct         | 5120                 | 0.0140          | 0.0212                       | 0.0142                       | 0.0211                       |
-| DeepSeek‑R1‑Distill‑Qwen‑14B | 5120                 | 0.0140          | 0.0211                       | 0.0142                       | 0.0210                       |
-| LLaMA‑3‑8B                   | 4096                 | 0.0156          | 0.0258                       | 0.0155                       | 0.0234                       |
-| Gemma‑4‑31B (text)           | 5376                 | 0.0136          | 0.0167                       | 0.0128                       | 0.0153                       |
-| Gemma‑4‑31B (vision)         | 1152                 | 0.0295          | **0.0440**                   | 0.0306                       | 0.0304                       |
+| Model                        | $d_{\text{model}}$ | Random Baseline | $\overline{\cos}(V_Q,V_K)$ | $\overline{\cos}(V_Q,V_V)$ | $\overline{\cos}(V_K,V_V)$ |
+| ---------------------------- | ------------------ | --------------- | -------------------------- | -------------------------- | -------------------------- |
+| Qwen2.5‑14B‑Instruct         | 5120               | 0.0140          | 0.0212                     | 0.0142                     | 0.0211                     |
+| DeepSeek‑R1‑Distill‑Qwen‑14B | 5120               | 0.0140          | 0.0211                     | 0.0142                     | 0.0210                     |
+| LLaMA‑3‑8B                   | 4096               | 0.0156          | 0.0258                     | 0.0155                     | 0.0234                     |
+| Gemma‑4‑31B (text)           | 5376               | 0.0136          | 0.0167                     | 0.0128                     | 0.0153                     |
+| Gemma‑4‑31B (vision)         | 1152               | 0.0295          | **0.0440**                 | 0.0306                     | 0.0304                     |
 
 > - In standard text Transformers, the slight elevation of `cosV_QK` (~1.5× baseline) represents an **extremely weak input coupling**, far from “structural alignment,” and can be regarded as natural fluctuation around random orthogonality.  
 > - In vision encoders, `cosV_QK` is more noticeably elevated (0.044 vs 0.030), reflecting the special requirement of vision self‑attention to share spatially sensitive directions. This does not alter the overall conclusion that the V space remains close to global random orthogonality.
