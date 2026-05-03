@@ -135,7 +135,7 @@ The left singular vectors (output subspaces) of the Q, K, V matrices in attentio
 
 **Mathematical Expression:**
 
-Let $ U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h} $ be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
+Let $U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h}$ be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
 
 $$
 \overline{\cos}(U_A, U_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle u_{A,i}, u_{B,i} \rangle|
@@ -172,7 +172,7 @@ The right singular vectors (input subspaces) of Q, K, V in the high‑dimensiona
 
 **Mathematical Expression:**
 
-Let $ V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h} $ be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
+Let $V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h}$ be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
 
 $$
 \overline{\cos}(V_A, V_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle v_{A,i}, v_{B,i} \rangle|
