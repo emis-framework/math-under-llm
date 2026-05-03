@@ -116,10 +116,10 @@ $$
 
 **Example Table:**
 
-| Format | Mantissa bits \(m\) | MaxFinite | \(L_\text{dyn}\) |
-| ------ | ------------------- | --------- | ---------------- |
-| FP16   | 10                  | 6.55e4    | 16               |
-| BF16   | 7                   | 3.39e38   | 128              |
+| Format | Mantissa bits $m$ | MaxFinite | $L_\text{dyn}$ |
+| ------ | ----------------- | --------- | -------------- |
+| FP16   | 10                | 6.55e4    | 16             |
+| BF16   | 7                 | 3.39e38   | 128            |
 
 > Explains why ultra-deep models (>40 layers) adopt **BF16/mixed precision**.
 
@@ -135,7 +135,7 @@ The left singular vectors (output subspaces) of the Q, K, V matrices in attentio
 
 **Mathematical Expression:**
 
-Let \( U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h} \) be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
+Let $ U_Q, U_K, U_V \in \mathbb{R}^{d_h \times d_h} $ be the left singular vector matrices of Q, K, V respectively. The mean absolute cosine similarity of matched columns is defined as:
 
 $$
 \overline{\cos}(U_A, U_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle u_{A,i}, u_{B,i} \rangle|
@@ -153,13 +153,13 @@ $$
 
 **Empirical Results (cross‑model averages):**
 
-| Model                        | \(d_h\) | Random Baseline | \(\overline{\cos}(U_Q,U_K)\) | \(\overline{\cos}(U_Q,U_V)\) | \(\overline{\cos}(U_K,U_V)\) |
-| ---------------------------- | ------- | --------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| Qwen2.5‑14B‑Instruct         | 128     | 0.0884          | 0.0981                       | **0.0704**                   | **0.0702**                   |
-| DeepSeek‑R1‑Distill‑Qwen‑14B | 128     | 0.0884          | 0.0982                       | **0.0705**                   | **0.0699**                   |
-| LLaMA‑3‑8B                   | 128     | 0.0884          | 0.0949                       | **0.0707**                   | **0.0705**                   |
-| Gemma‑4‑31B (text)           | 256     | 0.0625          | 0.0630                       | **0.0497**                   | **0.0500**                   |
-| Gemma‑4‑31B (vision)         | 128     | 0.0884          | 0.1024                       | **0.0714**                   | **0.0713**                   |
+| Model                        | $d_h$ | Random Baseline | $\overline{\cos}(U_Q,U_K)$ | $\overline{\cos}(U_Q,U_V)$ | $\overline{\cos}(U_K,U_V)$ |
+| ---------------------------- | ----- | --------------- | -------------------------- | -------------------------- | -------------------------- |
+| Qwen2.5‑14B‑Instruct         | 128   | 0.0884          | 0.0981                     | **0.0704**                 | **0.0702**                 |
+| DeepSeek‑R1‑Distill‑Qwen‑14B | 128   | 0.0884          | 0.0982                     | **0.0705**                 | **0.0699**                 |
+| LLaMA‑3‑8B                   | 128   | 0.0884          | 0.0949                     | **0.0707**                 | **0.0705**                 |
+| Gemma‑4‑31B (text)           | 256   | 0.0625          | 0.0630                     | **0.0497**                 | **0.0500**                 |
+| Gemma‑4‑31B (vision)         | 128   | 0.0884          | 0.1024                     | **0.0714**                 | **0.0713**                 |
 
 > **Super‑orthogonality** is defined as cosine values systematically below the random expectation, typically by about **20%**. This phenomenon appears consistently across all tested models and modalities, indicating that pretraining actively pushes the value output subspace away from the Q/K output subspaces.
 
@@ -172,13 +172,13 @@ The right singular vectors (input subspaces) of Q, K, V in the high‑dimensiona
 
 **Mathematical Expression:**
 
-Let \( V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h} \) be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
+Let $ V_Q, V_K, V_V \in \mathbb{R}^{d_{\text{model}} \times d_h} $ be the right singular vector matrices of Q, K, V. The mean absolute cosine similarity of matched columns is:
 
 $$
 \overline{\cos}(V_A, V_B) = \frac{1}{d_h} \sum_{i=1}^{d_h} |\langle v_{A,i}, v_{B,i} \rangle|
 $$
 
-Compared with the random baseline \( 1/\sqrt{d_{\text{model}}} \):
+Compared with the random baseline $ 1/\sqrt{d_{\text{model}}} $:
 
 $$
 \overline{\cos}(V_Q, V_K) \approx \overline{\cos}(V_Q, V_V) \approx \overline{\cos}(V_K, V_V) \approx \frac{1}{\sqrt{d_{\text{model}}}}
@@ -186,13 +186,13 @@ $$
 
 **Empirical Results (cross‑model averages):**
 
-| Model                        | \(d_{\text{model}}\) | Random Baseline | \(\overline{\cos}(V_Q,V_K)\) | \(\overline{\cos}(V_Q,V_V)\) | \(\overline{\cos}(V_K,V_V)\) |
-| ---------------------------- | -------------------- | --------------- | ---------------------------- | ---------------------------- | ---------------------------- |
-| Qwen2.5‑14B‑Instruct         | 5120                 | 0.0140          | 0.0212                       | 0.0142                       | 0.0211                       |
-| DeepSeek‑R1‑Distill‑Qwen‑14B | 5120                 | 0.0140          | 0.0211                       | 0.0142                       | 0.0210                       |
-| LLaMA‑3‑8B                   | 4096                 | 0.0156          | 0.0258                       | 0.0155                       | 0.0234                       |
-| Gemma‑4‑31B (text)           | 5376                 | 0.0136          | 0.0167                       | 0.0128                       | 0.0153                       |
-| Gemma‑4‑31B (vision)         | 1152                 | 0.0295          | **0.0440**                   | 0.0306                       | 0.0304                       |
+| Model                        | $d_{\text{model}}$ | Random Baseline | $\overline{\cos}(V_Q,V_K)$ | $\overline{\cos}(V_Q,V_V)$ | $\overline{\cos}(V_K,V_V)$ |
+| ---------------------------- | ------------------ | --------------- | -------------------------- | -------------------------- | -------------------------- |
+| Qwen2.5‑14B‑Instruct         | 5120               | 0.0140          | 0.0212                     | 0.0142                     | 0.0211                     |
+| DeepSeek‑R1‑Distill‑Qwen‑14B | 5120               | 0.0140          | 0.0211                     | 0.0142                     | 0.0210                     |
+| LLaMA‑3‑8B                   | 4096               | 0.0156          | 0.0258                     | 0.0155                     | 0.0234                     |
+| Gemma‑4‑31B (text)           | 5376               | 0.0136          | 0.0167                     | 0.0128                     | 0.0153                     |
+| Gemma‑4‑31B (vision)         | 1152               | 0.0295          | **0.0440**                 | 0.0306                     | 0.0304                     |
 
 > - In standard text Transformers, the slight elevation of `cosV_QK` (~1.5× baseline) represents an **extremely weak input coupling**, far from “structural alignment,” and can be regarded as natural fluctuation around random orthogonality.  
 > - In vision encoders, `cosV_QK` is more noticeably elevated (0.044 vs 0.030), reflecting the special requirement of vision self‑attention to share spatially sensitive directions. This does not alter the overall conclusion that the V space remains close to global random orthogonality.
