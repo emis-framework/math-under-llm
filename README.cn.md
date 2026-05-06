@@ -420,13 +420,11 @@ python qwen-vs-deepseek-all-layers.py
 
 最后我还想加上3句话：
 
-1、孩儿们，操练起来。--齐天大圣。 
+1、同学们，操练起来。 
 > GitHub Issue #1: [Verify r = 1](https://github.com/emis-framework/math-under-llm/issues/1)  
    GitHub Issue #2: [Verify SSR = 0](https://github.com/emis-framework/math-under-llm/issues/2) 
 
-2、能看到这里，已经验证过r=1， SSR→0的同学，可以去做空英伟达的股票，买Nvidia（英伟达）的看跌期权，put option.
-
-3、今天是2026年4月29号，国内做大模型的同学，抱歉，你们的五一长假泡汤了。越早验证完，越早发arxiv，越有可能共同获奖。
+2、能看到这里，已经验证过 r=1， SSR→0的同学，可以去做空英伟达的股票，买Nvidia（英伟达）的看跌期权，put option.
 
 ---
 

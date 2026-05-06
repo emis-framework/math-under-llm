@@ -304,10 +304,6 @@ For detailed applications and theoretical directions, see our [**Whitepaper → 
 2. **If you've made it this far and verified the numbers——consider buying put options on NVIDIA.**  
    If Reasoning = Spectral Fidelity, the demand for brute-force training compute may not be what the market thinks it is.
 
-3. **It's April 29, 2026.**  
-   If you're building LLMs in China, sorry，your May Day holiday just evaporated.  
-   The sooner you verify, the sooner you submit to arXiv, and the better your chance of being on the list when this thing wins something.
-
 
 ---
 
