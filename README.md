@@ -1,7 +1,7 @@
 > LLM and LLM's laws lay hid in night:   
 > Nature said, 'Let Lao Wang be!' and AI was light.
 
-TL;DR: By applying SVD to the Q/K weight matrices of LLMs, we discovered two universal cross-model regularities — r = 1 (Spectral Linear Alignment) and SSR → 0 (Spectral Shape Fidelity). No inference, no benchmarks — just inspect the weights to assess a model's reasoning capability.
+TL;DR: We applied SVD to Q/K/V weight matrices of 10+ LLMs across architectures (Qwen, DeepSeek‑R1, LLaMA‑3, Gemma‑4, etc.) and discovered five universal spectral regularities — including r=1 (spectral alignment), SSR→0 (shape fidelity), super‑orthogonality of output subspaces, and random orthogonality of input subspaces. No inference, no benchmarks — just inspect the static weights to assess reasoning capability and convergence quality.
 
 # Mathematical Foundations of Large Language Models (MF-LLM)
 
@@ -20,13 +20,24 @@ TL;DR: By applying SVD to the Q/K weight matrices of LLMs, we discovered two uni
 
 ---
 
-## Overview
+## 🎯 Core Findings (30-second read)
 
-**Wang's five Laws** provide a **static, reproducible framework** to evaluate reasoning capability in LLMs from attention weights alone.
+We performed SVD on the Q/K/V weight matrices of **10+ large Transformer models** across different architectures and modalities. Five universal spectral regularities emerged:
+
+1. **First Law**: Singular value spectra of Q and K are linearly correlated (Pearson r → 1)
+2. **Second Law**: Normalized spectral shape residual (SSR) → 0 in deep layers, correlating with reasoning ability
+3. **Third Law**: Floating-point precision and dynamic range jointly constrain maximum trainable depth
+4. **Fourth Law**: Output subspaces of Q/K and V are super‑orthogonal (~20% below random baseline)
+5. **Fifth Law**: Input subspaces are globally random‑orthogonal — no structural coupling
+
+**What this means**: Well-trained Transformers converge to a **universal geometric fixed point** during pretraining. These regularities are detectable from static weights alone, with no forward pass required.
+
+> 🚀 [Click here to verify on your own model — no code needed](https://huggingface.co/spaces/wehe1pwe/math-under-llm)
 
 ### Wang's five Laws
 
 #### 1️⃣ First Law — Spectral Linear Alignment
+> 💡 **In plain language**: Q and K use the same "importance ranking" — the model applies a single standard when deciding what to attend to. This is not a training coincidence; it emerges because information propagation is optimized during pretraining.
 
 **Statement:**  
 Query (Q) and Key (K) singular-value spectra are linearly correlated:
@@ -56,6 +67,7 @@ $$
 ---
 
 #### 2️⃣ Second Law — Spectral Shape Fidelity
+> 💡 **In plain language**: In deeper layers, Q and K distribute their energy in increasingly similar ways. Lower SSR means higher reasoning fidelity. RL‑tuned models (e.g. DeepSeek‑R1) systematically reduce SSR in later layers — a microscopic explanation for their improved reasoning.
 
 **Statement:**  
 Normalized spectral mismatch between Q and K decreases in deep layers:
@@ -88,6 +100,7 @@ $$
 ---
 
 #### 3️⃣ Third Law — Precision-Depth-Logic Criterion
+> 💡 **In plain language**: You cannot train arbitrarily deep models — floating‑point precision and dynamic range impose hard physical limits. BF16 is the only low‑precision format suitable for 100+‑layer models because its exponent range matches FP32.
 
 **Statement:**  
 Maximum trainable depth `L_max` is constrained by SSR, floating-point precision, and dynamic range:  
@@ -126,6 +139,7 @@ $$
 ---
 
 ### 4️⃣ Fourth Law — Global Decoupling of Output Subspaces
+> 💡 **In plain language**: The "retrieval path" (Q/K matching) and the "content readout path" (V) are forcibly separated in the output space. This super‑orthogonality is baked in during pretraining and prevents attention weights from being contaminated by Value content.
 
 **Description:**  
 The left singular vectors (output subspaces) of the Q, K, V matrices in attention exhibit a systematic geometric structure:
@@ -166,6 +180,7 @@ $$
 ---
 
 ### 5️⃣ Fifth Law — Global Random Orthogonality of Input Subspaces
+> 💡 **In plain language**: The model has no structural bias in how it reads input features — it treats all directions in token‑embedding space equally, allowing free and independent semantic extraction.
 
 **Description:**  
 The right singular vectors (input subspaces) of Q, K, V in the high‑dimensional token space exhibit near‑random alignment, with no structural coupling. This means the model freely and independently selects sensitive directions from the input embedding, without a mandatory shared basis.
@@ -206,6 +221,28 @@ The five laws together describe the **static spectral architecture** of Transfor
 - **V space** (input): global random orthogonal, ensuring free feature selection (Fifth Law)
 
 This structure remains highly consistent across multiple models (Qwen, DeepSeek‑R1, LLaMA‑3, Gemma‑4) and modalities (vision/text), indicating that it is a **universal geometric fixed point** reached at the end of pretraining.
+
+---
+
+---
+
+## 🎯 Who Benefits from This Work?
+
+| If you work on...                    | Focus on...                                                                                                                                                               |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **LLM Interpretability / SAE**       | Fourth & Fifth Laws (U/V subspace orthogonality) — explains why SAE‑discovered feature orthogonality exists at the weight level as a necessary consequence of convergence |
+| **Training Optimization / Grokking** | Second Law (SSR→0) — SSR is a leading indicator of generalization                                                                                                         |
+| **Ultra‑Deep Architecture Design**   | Third Law (precision–depth criterion) — why BF16 is the only viable low‑precision choice for 100+‑layer models                                                            |
+| **Reasoning Evaluation**             | First & Second Laws — assess reasoning potential from static weights, no test set needed                                                                                  |
+| **RL Fine‑tuning Monitoring**        | Second Law — track SSR changes in deep layers to monitor RL effectiveness                                                                                                 |
+
+---
+
+### 5.1 Connections to Scaling Laws and Grokking
+
+**Scaling Laws (Kaplan et al., 2020)** tell us "bigger is better" — but only as an empirical trend. Wang's Five Laws provide the missing micro‑foundation: larger compute and more data ultimately produce better spectral structure (aligned Σ, lower SSR, more orthogonal U/V spaces). Scaling Laws describe the phenomenon; the Five Laws describe the geometric reason behind it.
+
+**Grokking (Nanda et al., 2023)** showed that models learning modular arithmetic suddenly generalize after extended training. Our P2 experiments demonstrate that **SSR undergoes a phase transition that precedes the generalization transition** — SSR drops significantly before validation accuracy spikes. This suggests spectral alignment is a necessary precondition for generalization, not merely a consequence of it.
 
 ---
 
